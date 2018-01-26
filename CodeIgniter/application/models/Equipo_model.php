@@ -25,6 +25,16 @@ class Equipo_model extends CI_Model{
 			return false;
 		}
 	}
+	public function obtener_equipos_evaluar($dato){
+		
+		$query = "SELECT * FROM Equipo WHERE ID_Reto IN (SELECT ID_Reto FROM Reto WHERE ID_Reto = $dato)";
+		$query = $this->db->query($query);
+		if ($query->num_rows() > 0){
+			return $query;
+		}else{
+			return false;
+		}	
+	}
 
 	//Obtiene todo los Ciclos, pero con los valores de las claves referenciadas
 	public function obtener_equipos_valores(){

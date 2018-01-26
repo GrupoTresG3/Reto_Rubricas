@@ -105,7 +105,6 @@ class Usuario extends CI_Controller {
 
 		$this->load->view('header');
 		$this->load->view('usuario/listar_usuario',$datos);
-		$this->load->view('usuario/nuevo_usuario',$datos);
 		$this->load->view('footer');		
 	}
 }

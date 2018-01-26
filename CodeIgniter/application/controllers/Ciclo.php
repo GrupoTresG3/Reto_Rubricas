@@ -94,7 +94,6 @@ class Ciclo extends CI_Controller {
 
 		$this->load->view('header');
 		$this->load->view('ciclo/listar_ciclo',$datos);
-		$this->load->view('ciclo/nuevo_ciclo',$datos);
 		$this->load->view('footer');		
 	}
 }

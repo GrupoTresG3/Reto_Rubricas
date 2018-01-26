@@ -35,6 +35,17 @@ class Reto_model extends CI_Model{
 		}
 	}	
 
+	public function obtener_reto_evaluar($dato){
+		$query = "SELECT * FROM Reto WHERE ID_Reto IN (SELECT ID_Reto FROM Equipo WHERE ID_Equipo IN (SELECT ID_Equipo FROM Equipo_Usuario WHERE (ID_Usuario=".$dato.")))";
+		//echo $query;
+		$query = $this->db->query($query);
+		if ($query->num_rows() > 0){
+			return $query;
+		}else{
+			return false;
+		}
+	}		
+
 	public function actualizar_reto($id,$datos){
 		$datosBD = array(
 			'COD_Reto' => $datos['COD_Reto'],

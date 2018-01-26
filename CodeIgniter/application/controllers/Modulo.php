@@ -94,7 +94,6 @@ class Modulo extends CI_Controller {
 
 		$this->load->view('header');
 		$this->load->view('modulo/listar_modulo',$datos);
-		$this->load->view('modulo/nuevo_modulo',$datos);
 		$this->load->view('footer');		
 	}
 }

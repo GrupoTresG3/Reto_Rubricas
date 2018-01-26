@@ -1,3 +1,7 @@
+<?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
 <div id="centro">
 <?php
 		printf('Gestión de RETOS_MODULOS<br>');
@@ -92,7 +96,7 @@
 			</thead>
 			<tbody>');
 			foreach ($retos_modulos->result() as $reto_modulo) {
-				printf('<tr>',$reto_modulo->ID_Reto_modulo,$reto_modulo->ID_Reto_modulo);
+				printf('<tr class="primero">',$reto_modulo->ID_Reto_modulo,$reto_modulo->ID_Reto_modulo);
 				//Paso el objeto stdClass a Array para modificar COD_Centro y COD_Curso
 				//$cicloArray = get_object_vars($ciclo);
 				//var_dump($ciclo['ID_curso']);
@@ -122,3 +126,15 @@
 
 				<?php echo form_button('Nuevo','Nuevo Reto Modulo',$js_volver_button) ?>			
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
+
+?>

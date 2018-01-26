@@ -1,4 +1,8 @@
 <?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
+<?php
 $form = array(
 	'name' => 'form_usuario'
 	);
@@ -115,3 +119,15 @@ $Dni = array(
 	<?php echo form_submit('Crear','Crear',"id='botonesNuevo'"); ?>
 	<?php echo form_close();?>
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
+
+?>

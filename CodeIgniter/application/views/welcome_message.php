@@ -97,6 +97,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </li>
 
                      <li><a href=<? base_url()?>"#" id="cargarMatricularse">Matricularse</a></li>
+
+                     
                     
                     <li><a href=<? base_url()?>"index.php/Login/cerrar_sesion" >Cerrar Sesion</a></li>
                 </ul>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
 <div id="centro">
 <?php
 		printf('Gestión de EQUIPOS<br>');
@@ -53,7 +57,7 @@
 			</thead>
 			<tbody>');
 			foreach ($equipos->result() as $equipo) {
-				printf('<tr>',$equipo->ID_Equipo,$equipo->ID_Equipo);
+				printf('<tr class="primero">',$equipo->ID_Equipo,$equipo->ID_Equipo);
 				//Paso el objeto stdClass a Array para modificar COD_Centro y COD_Curso
 				//$cicloArray = get_object_vars($ciclo);
 				//var_dump($ciclo['ID_curso']);
@@ -83,3 +87,15 @@
 
 				<?php echo form_button('Nuevo','Nuevo Equipo',$js_volver_button) ?>	
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
+
+?>

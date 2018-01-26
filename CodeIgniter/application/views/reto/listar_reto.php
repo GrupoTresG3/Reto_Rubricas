@@ -1,3 +1,7 @@
+<?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
 <div id="centro">
 <?php
 		printf('Gestión de RETOS');
@@ -15,7 +19,6 @@
 			</thead>
 			<tbody>');
 			foreach ($retos->result() as $reto) {
-				printf('<tr>',$reto->ID_Reto,$reto->ID_Reto);
 				printf('<tr class="primero">',$reto->ID_Reto,$reto->ID_Reto);
 				foreach ($reto as $detalle) {
 					//Para curso y Centro hay que sacar su COD_CENTRO y COD_CURSO
@@ -43,3 +46,15 @@
 		}
 		?>		
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
+
+?>

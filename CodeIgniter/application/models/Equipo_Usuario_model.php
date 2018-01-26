@@ -28,7 +28,7 @@ class Equipo_Usuario_model extends CI_Model{
 
 	//Obtiene todo los Ciclos, pero con los valores de las claves referenciadas
 	public function obtener_equipos_usuarios_valores(){
-		$query = "SELECT ID_Equipo_Alumno, DESC_Equipo, User, COD_Rol FROM Equipo, Usuario, Equipo_Usuario WHERE Equipo_Usuario.ID_Equipo = Equipo.ID_Equipo and Equipo_Usuario.ID_Usuario = Usuario.ID_Usuario";
+		$query = "SELECT ID_Equipo_Alumno, COD_Equipo, User, COD_Rol FROM Equipo, Usuario, Equipo_Usuario WHERE Equipo_Usuario.ID_Equipo = Equipo.ID_Equipo and Equipo_Usuario.ID_Usuario = Usuario.ID_Usuario";
 		$query = $this->db->query($query);
 		if ($query->num_rows() > 0){
 			return $query;
@@ -49,7 +49,7 @@ class Equipo_Usuario_model extends CI_Model{
 
 	//Obtiene Ciclo por ID, pero con los valores de las claves referenciadas
 	public function obtener_equipo_usuario_valores($id){
-		$query = "SELECT ID_Equipo_Alumno, DESC_Equipo, User, COD_Rol FROM Equipo, Usuario, Equipo_Usuario WHERE Equipo_Usuario.ID_Equipo = Equipo.ID_Equipo and Equipo_Usuario.ID_Usuario = Usuario.ID_Usuario and Equipo_Usuario.ID_Equipo_Alumno = ".$id;
+		$query = "SELECT ID_Equipo_Alumno, COD_Equipo, User, COD_Rol FROM Equipo, Usuario, Equipo_Usuario WHERE Equipo_Usuario.ID_Equipo = Equipo.ID_Equipo and Equipo_Usuario.ID_Usuario = Usuario.ID_Usuario and Equipo_Usuario.ID_Equipo_Alumno = ".$id;
 		$query = $this->db->query($query);
 		if ($query->num_rows() > 0){
 			return $query;
@@ -74,7 +74,7 @@ class Equipo_Usuario_model extends CI_Model{
 	}
 
 	public function filtrar_equipo_usuario_valores($filtro){
-			$query = "SELECT ID_Equipo_Alumno, DESC_Equipo, User, COD_Rol FROM Equipo, Usuario, Equipo_Usuario WHERE Equipo_Usuario.ID_Equipo = Equipo.ID_Equipo and Equipo_Usuario.ID_Usuario = Usuario.ID_Usuario";
+			$query = "SELECT ID_Equipo_Alumno, COD_Equipo, User, COD_Rol FROM Equipo, Usuario, Equipo_Usuario WHERE Equipo_Usuario.ID_Equipo = Equipo.ID_Equipo and Equipo_Usuario.ID_Usuario = Usuario.ID_Usuario";
 		if ($filtro['ID_Equipo'] != 0){
 			$query = $query . " and Equipo.ID_Equipo = " . $filtro['ID_Equipo'];
 		}

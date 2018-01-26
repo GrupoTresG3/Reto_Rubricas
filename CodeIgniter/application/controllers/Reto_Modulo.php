@@ -103,7 +103,6 @@ class reto_Modulo extends CI_Controller {
 
 		$this->load->view('header');
 		$this->load->view('reto_modulo/listar_reto_modulo',$datos);
-		$this->load->view('reto_modulo/nuevo_reto_modulo',$datos);
 		$this->load->view('footer');		
 	}
 	

@@ -87,7 +87,6 @@ class Medicion extends CI_Controller {
 
 		$this->load->view('header');
 		$this->load->view('medicion/listar_medicion',$datos);
-		$this->load->view('medicion/nuevo_medicion',$datos);
 		$this->load->view('footer');		
 	}
 }

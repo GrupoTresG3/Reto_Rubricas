@@ -102,7 +102,6 @@ class Medicion_GrupoCompetencia_Competencia extends CI_Controller {
 
 		$this->load->view('header');
 		$this->load->view('medicion_grupocompetencia_competencia/listar_medicion_grupocompetencia_competencia',$datos);
-		$this->load->view('medicion_grupocompetencia_competencia/nuevo_medicion_grupocompetencia_competencia',$datos);
 		$this->load->view('footer');		
 	}
 	

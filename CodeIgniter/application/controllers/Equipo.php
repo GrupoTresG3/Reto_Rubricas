@@ -87,7 +87,6 @@ class Equipo extends CI_Controller {
 
 		$this->load->view('header');
 		$this->load->view('equipo/listar_equipo',$datos);
-		$this->load->view('equipo/nuevo_equipo',$datos);
 		$this->load->view('footer');		
 	}
 }

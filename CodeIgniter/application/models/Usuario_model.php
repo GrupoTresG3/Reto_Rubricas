@@ -31,6 +31,16 @@ class Usuario_model extends CI_Model{
 			return false;
 		}
 	}
+	public function obtener_usuarios_evaluar($dato){
+	
+		$query = "SELECT * FROM Usuario WHERE ID_Usuario IN (SELECT ID_Usuario FROM Equipo_Usuario WHERE ID_Equipo = $dato)";
+		$query = $this->db->query($query);
+		if ($query->num_rows() > 0){
+			return $query;
+		}else{
+			return false;
+		}	
+	}
 
 	//Obtiene todo los Ciclos, pero con los valores de las claves referenciadas
 	public function obtener_usuarios_valores(){

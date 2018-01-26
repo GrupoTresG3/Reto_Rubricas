@@ -1,4 +1,8 @@
 <?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
+<?php
 $form = array(
 	'name' => 'form_reto'
 	);
@@ -34,4 +38,15 @@ $DESC_Reto = array(
 	<?php echo form_button('Cancelar','Cancelar',$js_cancel_button); ?>
 	<?php echo form_close();?>
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
 
+?>

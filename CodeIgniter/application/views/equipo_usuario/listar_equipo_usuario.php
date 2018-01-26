@@ -1,3 +1,7 @@
+<?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
 <div id="centro">
 <?php
 		printf('Gestión de EQUIPOS_USUARIOS<br>');
@@ -9,7 +13,7 @@
 	    		0         => 'Todos los Equipos'
 			);
 			foreach ($equipos->result() as $equipo) {
-				$ID_Equipo[$equipo->ID_Equipo] = $equipo->DESC_Equipo;
+				$ID_Equipo[$equipo->ID_Equipo] = $equipo->COD_Equipo;
 			}	
 		}
 		else{
@@ -72,7 +76,7 @@
 			</thead>
 			<tbody>');
 			foreach ($equipos_usuarios->result() as $equipo_usuario) {
-				printf('<tr>',$equipo_usuario->ID_Equipo_Alumno,$equipo_usuario->ID_Equipo_Alumno);
+				printf('<tr class="primero">',$equipo_usuario->ID_Equipo_Alumno,$equipo_usuario->ID_Equipo_Alumno);
 				//Paso el objeto stdClass a Array para modificar COD_Centro y COD_Curso
 				//$cicloArray = get_object_vars($ciclo);
 				//var_dump($ciclo['ID_curso']);
@@ -102,3 +106,15 @@
 
 				<?php echo form_button('Nuevo','Nuevo Equipo Usuario',$js_volver_button) ?>		
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
+
+?>

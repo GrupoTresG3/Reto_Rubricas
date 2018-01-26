@@ -1,3 +1,7 @@
+<?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
 <div id="centro">
 <?php
 		printf('Gestión de TNEvaluador');
@@ -15,7 +19,6 @@
 			</thead>
 			<tbody>');
 			foreach ($tnevaluadores->result() as $tnevaluador) {
-				printf('<tr>',$tnevaluador->ID_TNEvaluador,$tnevaluador->ID_TNEvaluador);
 				printf('<tr class="primero">',$tnevaluador->ID_TNEvaluador,$tnevaluador->ID_TNEvaluador);
 				foreach ($tnevaluador as $detalle) {
 					//Para curso y Centro hay que sacar su COD_CENTRO y COD_CURSO
@@ -34,3 +37,15 @@
 		}
 		?>		
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
+
+?>

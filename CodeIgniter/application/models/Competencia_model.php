@@ -27,6 +27,16 @@ class Competencia_model extends CI_Model{
 			return false;
 		}
 	}
+	public function obtener_competencias_evaluar($dato){
+		$query = "SELECT * FROM Competencia WHERE ID_Competencia IN (SELECT ID_Competencia FROM Medicion_GrupoCompetencia_Competencia WHERE ID_Medicion IN (SELECT ID_Medicion FROM Medicion WHERE (ID_TUsuario=".$dato.")))";
+		
+		$query = $this->db->query($query);
+		if ($query->num_rows() > 0){
+			return $query;
+		}else{
+			return false;
+		}
+	}
 
 	public function obtener_competencia($id){
 		$where = $this->db->where('ID_Competencia',$id);

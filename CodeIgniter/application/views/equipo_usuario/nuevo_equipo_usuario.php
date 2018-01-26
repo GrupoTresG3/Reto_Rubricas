@@ -1,11 +1,15 @@
 <?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
+<?php
 $form = array(
 	'name' => 'form_equipo_usuario'
 	);
 $COD_Rol = array(
 	'name' => 'COD_Rol',
 	'placeholder' => 'Código de Rol',
-	'maxlength' => 10,
+	'maxlength' => 20,
 	'size' => 20,
 	'class' => 'prueba',
 	'required' => 1
@@ -16,7 +20,7 @@ $COD_Rol = array(
 	if ($equipos){
 		$ID_Equipo = array();
 		foreach ($equipos->result() as $equipo) {
-			$ID_Equipo[$equipo->ID_Equipo] = $equipo->DESC_Equipo;
+			$ID_Equipo[$equipo->ID_Equipo] = $equipo->COD_Equipo;
 		}	
 	}
 	else{
@@ -61,3 +65,15 @@ $COD_Rol = array(
 	<?php echo form_submit('Crear','Crear'); ?>
 	<?php echo form_close();?>
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
+
+?>

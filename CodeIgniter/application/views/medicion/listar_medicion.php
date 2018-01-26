@@ -53,7 +53,6 @@
 			</thead>
 			<tbody>');
 			foreach ($mediciones->result() as $medicion) {
-				printf('<tr>',$medicion->ID_Medicion,$medicion->ID_Medicion);
 				printf('<tr class="primero">',$medicion->ID_Medicion,$medicion->ID_Medicion);
 				//Paso el objeto stdClass a Array para modificar COD_Centro y COD_Curso
 				//$cicloArray = get_object_vars($ciclo);

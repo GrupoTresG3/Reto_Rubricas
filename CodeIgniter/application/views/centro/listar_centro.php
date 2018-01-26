@@ -1,3 +1,7 @@
+<?php
+session_start();
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+?>
 <div id='centro'>
 
 	<?php
@@ -17,7 +21,7 @@
 		</thead>
 		<tbody>');
 				foreach ($centros->result() as $centro) {
-					printf('<tr>',$centro->ID_Centro,$centro->ID_Centro);
+					printf('<tr class="primero">',$centro->ID_Centro,$centro->ID_Centro);
 					foreach ($centro as $detalle) {
 					//Para curso y Centro hay que sacar su COD_CENTRO y COD_CURSO
 						printf('<td>
@@ -46,4 +50,16 @@
 			}
 			?>		
 </div>
+<?php  
+}
+else{
+	?>
+	<script>
+		alert('No eres admin');
+		window.location="<? echo base_url().'index.php'?>";
+	</script>
+	<?php
+}
+
+?>
 

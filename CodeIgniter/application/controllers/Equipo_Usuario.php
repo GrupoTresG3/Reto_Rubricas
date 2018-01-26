@@ -93,7 +93,6 @@ class Equipo_Usuario extends CI_Controller {
 
 		$this->load->view('header');
 		$this->load->view('equipo_usuario/listar_equipo_usuario',$datos);
-		$this->load->view('equipo_usuario/nuevo_equipo_usuario',$datos);
 		$this->load->view('footer');		
 	}
 }
