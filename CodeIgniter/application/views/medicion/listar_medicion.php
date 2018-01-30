@@ -49,8 +49,10 @@
 						<span>%s</span>
 					</th>',$key,$key);
 			}
-			printf('<th>Acciones</th></tr>
-			</thead>
+			if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+				printf('<th>Acciones</th></tr>');
+			}
+			printf('</thead>
 			<tbody>');
 			foreach ($mediciones->result() as $medicion) {
 				printf('<tr class="primero">',$medicion->ID_Medicion,$medicion->ID_Medicion);
@@ -63,9 +65,11 @@
 					<a href="%sindex.php/Medicion/editar/%s">%s</a>
 					</td>',base_url(),$medicion->ID_Medicion,$detalle);
 				}
-				$url = "'".base_url()."index.php/Medicion/borrar/".$medicion->ID_Medicion."'"; 
-				printf('<td><input type="button" onclick="location.href=%s" value="Borrar"></td>',$url);
-				printf('</tr>');
+				if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+					$url = "'".base_url()."index.php/Medicion/borrar/".$medicion->ID_Medicion."'"; 
+					printf('<td><input type="button" onclick="location.href=%s" value="Borrar"></td>',$url);
+				}
+					printf('</tr>');
 			}	
 			printf('</tbody></table>');
 		}

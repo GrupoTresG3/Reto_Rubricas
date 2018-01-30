@@ -1,23 +1,26 @@
 <?php
 
- ?>
+?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style>
 .verequipos {
-    display: none;
+	display: none;
 }
 .verusuario {
-    display: none;
+	display: none;
 }
 .vertabla {
-    display: none;
+	display: none;
+}
+.verboton{
+	display:none;
 }
 </style>
-	<script type="text/javascript">
-		$("document").ready(function(){
-			
-				$.get("<? echo base_url().'index.php/Evaluar/obtener_retos'?>", function(datos){
-					console.log(datos);
+<script type="text/javascript">
+	$("document").ready(function(){
+
+		$.get("<? echo base_url().'index.php/Evaluar/obtener_retos'?>", function(datos){
+			console.log(datos);
 					//alert(datos);
 					datos2=JSON.parse(datos);
 					//alert(datos2);
@@ -26,88 +29,155 @@
 					});
 					//alert(jQuery.type(datos));
 				});
-			
 
-				$("#retos").on('change',function(){
-					$("#equipos").empty();
-					$('.verequipos').removeClass('verequipos');
-					var cod=$(this).val();
-					$.get("<? echo base_url().'index.php/Evaluar/obtener_equipos'?>",{ID_Reto:cod},function(datos){
-						datos2=JSON.parse(datos);
-						$("#equipos").append('<option value="0">'+"Seleccion una opcion"+'</option>');
-						$.each(datos2,function(indice,valor){
-							$("#equipos").append('<option value="'+valor.ID_Equipo +'">'+valor.COD_Equipo+'</option>')
-						});
-					});
+		var dato=[];
+		var user=0;
+
+		$("#retos").on('change',function(){
+			$("#tabla_reto").empty();
+			$('.vertabla').removeClass('vertabla');
+			var cod=$(this).val();
+			$.get("<? echo base_url().'index.php/Evaluar/obtener_notas'?>",{ID_Reto:cod},function(datos){
+				datos2=JSON.parse(datos);
+				$("#tabla_reto").append('<td></td>')
+				var contador=0;
+				var x='';
+				var i=0;
+				$.each(datos2,function(indice,valor){
+					
+
+
+					while( contador==indice && x!=valor.DESC_Competencia){
+						//alert(contador);
+						$("#tabla_reto").append(
+							`<td>`+valor.DESC_Competencia+`</td>`
+							);
+						contador=contador+1;
+						if(i<1){
+							x=valor.DESC_Competencia;
+							i++;
+						}
+					}
+
 				});
+				$("#tabla_reto").append(
+					`<td>Evaluar</td>`
+					);
+				$("#tabla_reto").append(
+					`<tr>`
+					);
+				var nombre="";
+				var datouser=[];
+				$.each(datos2,function(indice,valor){
+					$.ajaxSetup({
+						async: false
+					});
+					if(valor.User!=nombre){
+						//alert(valor.User);
+						$("#tabla_reto").append(`
 
-					$("#equipos").on('change',function(){
-					$("#usuario").empty();
-					$('.verusuario').removeClass('verusuario');
-					var cod=$(this).val();
-					$.get("<? echo base_url().'index.php/Evaluar/obtener_usuario'?>",{ID_Equipo:cod},function(datos){
+							<td>`+valor.User+`</td>`
+							);
+						var cod=valor.User;
+					//alert(cod);
+					$.get("<? echo base_url().'index.php/Evaluar/obtener_nota_filtro'?>",{nota:cod},function(datos){
 						datos2=JSON.parse(datos);
-						$("#usuario").append('<option value="0">'+"Seleccion una opcion"+'</option>');
 						$.each(datos2,function(indice,valor){
-							$("#usuario").append('<option value="'+valor.ID_Usuario +'">'+valor.Nombre+'</option>')
+							$("#tabla_reto").append(
+								`<td>`+valor.Nota+`</td>
+								`
+								);
+
 						});
+						$("#tabla_reto").append(`<td><center><input type="radio" data-idusuario=`+valor.ID_Usuario+` name="evaluar" class="evaluar" value="Evaluar"></center></td>`)
+						$("#tabla_reto").append(
+							`<tr>`)
 					});
-					});
 
-					var arraynota= [];
-					$("#usuario").on('change',function(){	
-						$("#tabla_reto").empty();
-						$('.vertabla').removeClass('vertabla');
-						var cod=$(this).val();
-						$.get("<? echo base_url().'index.php/Evaluar/obtener_competencia'?>",{ID_Competencia:cod},function(datos){
-							datos2=JSON.parse(datos);
-								$("#tabla_reto").append('<tr><td>'+'Competencia'+'</td><td>'+'Mal'+'</td><td>'+'Regular'+'</td><td>'+'Bien'+'</td><td>'+'Excelente'+'</td></tr>')
-							$.each(datos2,function(indice,valor){
-								$("#tabla_reto").append('<tr class="primero">                                <td>'+valor.DESC_Competencia+'</td><td><div class="checkEvaluarContenido">'+valor.Mal+'</div><br><div class="checkEvaluar"><input type="radio" name="'+indice+'" value='+valor.ID_Competencia+'-25></div></td><td><div class="checkEvaluarContenido">'+valor.Regular+'</div><br><div class="checkEvaluar"><input type="radio" name="'+indice+'" value='+valor.ID_Competencia+'-50></div></td><td><div class="checkEvaluarContenido">'+valor.Bien+'</div><br><div class="checkEvaluar"><input type="radio" name="'+indice+'" value='+valor.ID_Competencia+'-75></div></td><td><div class="checkEvaluarContenido">'+valor.Excelente+'</div><br><div class="checkEvaluar"><input type="radio" name="'+indice+'" value='+valor.ID_Competencia+'-100></div></td></tr>')
+					nombre= valor.User;
 
+				}
 
-								$("#boton").click(function () {	 
-									alert($('input:radio[name='+indice+']:checked').val());
-									arraynota.push($('input:radio[name='+indice+']:checked').val());
-			
-								});
+			});
 
-							});
-						});
-					});
+			});
 		});
-	</script>
+		$.ajaxSetup({
+			async: true
+		});
 
-	<form  method="post" action="<? echo base_url()."index.php/Evaluar/nueva_nota"?>" >
+
+
+		$('#tabla_reto').on('click','td',function (){
+			var id2 = $('input:radio[name="evaluar"]:checked').data('idusuario');
+			user=id2;
+			document.getElementById("user").value=user;
+			$("#tabla_evaluar").empty();
+			$("#tabla_reto").empty();
+			$('.vertabla').removeClass('vertabla');
+			$('.verboton').removeClass('verboton');
+			var cod=$(this).val();
+			$.get("<? echo base_url().'index.php/Evaluar/obtener_competencia'?>",{ID_Competencia:cod},function(datos){
+				datos2=JSON.parse(datos);
+				$("#tabla_evaluar").append('<tr><td>'+'Competencia'+'</td><td>'+'Mal'+'</td><td>'+'Regular'+'</td><td>'+'Bien'+'</td><td>'+'Excelente'+'</td></tr>')
+				$.each(datos2,function(indice,valor){
+
+					$("#tabla_evaluar").append(`
+						<tr class="primero">
+						<td>`+valor.DESC_Competencia+`</td>
+						<td><div class="checkEvaluarContenido">`+valor.Mal+`</div><br><div class="checkEvaluar"><input type="radio" name=`+indice+` data-id=`+valor.ID_Competencia+` data-nota='25'></div>
+						</td>
+						<td><div class="checkEvaluarContenido">`+valor.Regular+`</div><br><div class="checkEvaluar"><input type="radio" name=`+indice+` data-id=`+valor.ID_Competencia+` data-nota='50' ></div>
+						</td>
+						<td><div class="checkEvaluarContenido">`+valor.Bien+`</div><br><div class="checkEvaluar"><input type="radio" name="`+indice+`" data-id=`+valor.ID_Competencia+` data-nota='75' ></div>
+						</td>
+						<td><div class="checkEvaluarContenido">`+valor.Excelente+`</div><br><div class="checkEvaluar"><input type="radio" name=`+indice+` data-id=`+valor.ID_Competencia+` data-nota='100' ></div>
+						</td>
+
+						</tr>
+						`);
+
+					$("#boton").click(function () {
+								//alert($('input:radio[name='+indice+']:checked').data('id'));
+									//alert($('input:radio[name='+indice+']:checked').data('nota'));
+
+
+									var id1 = $('input:radio[name='+indice+']:checked').data('id');
+									var nota1 = $('input:radio[name='+indice+']:checked').data('nota');
+									dato.push({id:id1, nota:nota1});
+									console.log( dato);
+									datos=JSON.stringify(dato);
+									
+									document.getElementById("dato").value=datos;
+
+								});	
+
+				});
+			});
+		});
+	});
+</script>
+
+<form  method="post" action="<? echo base_url()."index.php/Evaluar/nueva_nota"?>" >
 	<label>Retos</label>
 	<select id="retos" name="ID_Reto">
 		<option value="">Selecciona una opción</option>
 		
 	</select>
 	<br>
-	<div class= "verequipos">
-		<label>Equipos</label>
-		<select id="equipos" >
-		
-		</select>
-	</div>
-	<div class="verusuario" >
-		<label>Usuario</label>
-		<select id="usuario" name="ID_Usuario">
-		
-		</select>
-	</div>
-	<br>
-<!--<? echo base_url()."index.php/Evaluar/nueva_nota"?>-->
+	<!--<? echo base_url()."index.php/Evaluar/nueva_nota"?>-->
 	<div class="vertabla">
 		
-			
-			
+
+
 		
-		<table id='tabla_reto'></table>
-		<input type="submit" id="boton" name="enviar" value="enviar" >
-		
-	</div>
+		<table id='tabla_reto'><tr></table>
+			<table id='tabla_evaluar'><tr></table>
+			<input type="hidden" id="user" name="user" value="">
+			<input type="hidden" id="dato" name="dato" value="">
+			<input type="submit" id="boton" class="verboton" name="enviar" value="enviar" >
+
+		</div>
 	</form>
 	<span id="#span"></span>
 

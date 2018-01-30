@@ -164,7 +164,7 @@ else{
                         
                         <ul>
                             
-                            <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia2</a></li>
+                            <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia</a></li>
                             <li><a href=<? base_url()?>"#" id="cargarMedicion">Medicion</a></li>
                         </ul>
                     </li>

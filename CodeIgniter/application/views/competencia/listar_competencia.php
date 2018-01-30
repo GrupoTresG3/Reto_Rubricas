@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <style>
   table {
         display: block;
@@ -19,8 +22,10 @@
 						<span>%s</span>
 					</th>',$key,$key);
 			}
-			printf('<th>Acciones</th></tr>
-			</thead>
+			if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+				printf('<th>Acciones</th></tr>');
+			}
+			printf('</thead>
 			<tbody>');
 			foreach ($competencias->result() as $competencia) {
 				printf('<tr class="primero">',$competencia->ID_Competencia,$competencia->ID_Competencia);
@@ -30,10 +35,15 @@
 					<a href="%sindex.php/Competencia/editar/%s">%s</a>
 					</td>',base_url(),$competencia->ID_Competencia,$detalle);
 				}
-				$url = "'".base_url()."index.php/Competencia/borrar/".$competencia->ID_Competencia."'"; 
-				printf('<td><input type="button" onclick="location.href=%s" value="Borrar"></td>',$url);
+				?>
+				<?php
+				
+					if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+						$url = "'".base_url()."index.php/Competencia/borrar/".$competencia->ID_Competencia."'"; 
+						printf('<td><input type="button" onclick="location.href=%s" value="Borrar"></td>',$url);
+					}
 				printf('</tr>');
-			}	
+				}	
 			printf('</tbody></table>');
 		}
 		else{
