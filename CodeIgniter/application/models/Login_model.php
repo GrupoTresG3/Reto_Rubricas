@@ -23,13 +23,24 @@ class Login_model extends CI_Model{
 					foreach ($query->result()as $row) {
 						$user_id=$row->ID_TUsuario;
 						$user_ev=$row->ID_Usuario;
+						$user_nom=$row->User;
 					}
+
+					$query2= "select * from `Medicion` WHERE `ID_TUsuario`=".$user_id."";
+					$query2 = $this->db->query($query2);
+					foreach ($query2->result()as $row) {
+						$user_md=$row->ID_Medicion;
+						
+					}
+
 					if($user_id==null){
 					}else{
 						echo $user_id;
 						session_start();
 						$_SESSION["user_id"]=$user_id; 
-						$_SESSION["user_ev"]=$user_ev;      
+						$_SESSION["user_ev"]=$user_ev;
+						$_SESSION["user_md"]=$user_md; 
+						$_SESSION["user_nom"]=$user_nom;      
 					}
 				}
 			}

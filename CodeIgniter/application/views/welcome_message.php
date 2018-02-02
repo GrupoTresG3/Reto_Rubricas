@@ -34,15 +34,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <li class="selected"><a href="index.php">Inicio</a></li>
 
-                    <li><a href=<? base_url()?>"#" id="cargarLogin">Login</a></li>
-                </ul>
-                <div class="clear"></div>
-            </nav>
-        </div>
-        <div class="clear"></div>   
-    </header>
+                        <li><a href=<? base_url()?>"#" id="cargarLogin">Login</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </nav>
+            </div>
+            <div class="clear"></div>   
+        </header>
 
-    <div id="contenido"></div>
+        <div id="contenido"></div>
         <?php 
     }
     else if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
@@ -83,71 +83,70 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li><a href=<? base_url()?>"#" id="cargarReto">Reto</a></li> 
                             </ul>
                         </li> 
-                    <li>
-                        <a>Gestion Rubricas</a>
+                        <li>
+                            <a>Gestion Rubricas</a>
 
-                        <ul>
-                            <li><a href=<? base_url()?>"#" id="cargarNotas">Notas</a></li>
-                            <li><a href=<? base_url()?>"#" id="cargarMedicion">Medicion</a></li>
-                            <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia</a></li>
-                            <li><a href=<? base_url()?>"#" id="cargarGrupoCompetencia">GrupoCompetencia</a></li>
-                            <li><a href=<? base_url()?>"#" id="cargarMGCC">MGCC</a></li>
-                            <li><a href=<? base_url()?>"#" id="cargarReto_Medicion">Reto Medicion</a></li>
-                        </ul>
-                    </li>
+                            <ul>
+                                <li><a href=<? base_url()?>"#" id="cargarMedicion">Medicion</a></li>
+                                <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia</a></li>
+                                <li><a href=<? base_url()?>"#" id="cargarGrupoCompetencia">GrupoCompetencia</a></li>
+                                <li><a href=<? base_url()?>"#" id="cargarMGCC">MGCC</a></li>
+                                <li><a href=<? base_url()?>"#" id="cargarReto_Medicion">Reto Medicion</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href=<? base_url()?>"index.php/Login/cerrar_sesion" >Cerrar Sesion</a></li>
+                        <li class='bienvenido'><a><? echo 'Bienvenido '.$_SESSION['user_nom'] ?></a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </nav>
+            </div>
+            <div class="clear"></div>   
+        </header>
 
-                     <li><a href=<? base_url()?>"#" id="cargarMatricularse">Matricularse</a></li>
+        <div id="contenido"></div>
 
-                     
-                    
-                    <li><a href=<? base_url()?>"index.php/Login/cerrar_sesion" >Cerrar Sesion</a></li>
-                </ul>
-                <div class="clear"></div>
-            </nav>
-        </div>
-        <div class="clear"></div>   
-    </header>
+        <?php
+    }
+    else if ((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='2')){
+       ?>
+       <div id="container" class="width">
 
-    <div id="contenido"></div>
-
-    <?php
-}
-else if ((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='2')){
-   ?>
-   <div id="container" class="width">
-
-    <header> 
-        <div class="width">
+        <header> 
+            <div class="width">
 
 
-            <nav>   
-                <ul class="sf-menu dropdown">
+                <nav>   
+                    <ul class="sf-menu dropdown">
 
-                    <li class="selected"><a href="index.php">Inicio</a></li>
-                    <li>
+                        <li class="selected"><a href="index.php">Inicio</a></li>
+                        <li>
 
-                        <a href=<? base_url()?>"index.php">Rubricas</a>
+                            <a href=<? base_url()?>"index.php">Rubricas</a>
 
-                        <ul>
+                            <ul>
 
-                            <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia</a></li>
-                            <li><a href=<? base_url()?>"#" id="cargarMedicion">Medicion</a></li>
-                        </ul>
-                    </li>
-                    <li><a href=<? base_url()?>"index.php/Login/cerrar_sesion" >Cerrar Sesion</a></li>
-                </ul>
-                <div class="clear"></div>
-            </nav>
-        </div>
-        <div class="clear"></div>   
-    </header>
+                                <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia</a></li>
+                                <li><a href=<? base_url()?>"#" id="cargarMedicion">Medicion</a></li>
+                            </ul>
+                        </li>
+                        <li><a href=<? base_url()?>"#" id="cargarEvaluacion">Evaluar</a></li>
+                        <li><a href=<? base_url()?>"#" id="cargarNotas">Notas</a></li>
+                        <li><a href=<? base_url()?>"index.php/Login/cerrar_sesion" >Cerrar Sesion</a></li>
+                        <li class='bienvenido'><a><? echo 'Bienvenido '.$_SESSION['user_nom'] ?></a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </nav>
+            </div>
+            <div class="clear"></div>   
+        </header>
 
-    <div id="contenido"></div>
-    <?php 
-}
-else{
-    ?>
-     <div id="container" class="width">
+        <div id="contenido"></div>
+        <?php 
+    }
+    else{
+        ?>
+        <div id="container" class="width">
 
             <header> 
              <div class="width">
@@ -155,82 +154,86 @@ else{
 
                 <nav>   
                     <ul class="sf-menu dropdown">
-                     
+
                         <li class="selected"><a href="index.php">Inicio</a></li>
 
-                    <li>
+                        <li>
 
-                        <a href=<? base_url()?>"index.php">Rubricas</a>
-                        
-                        <ul>
-                            
-                            <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia</a></li>
-                            <li><a href=<? base_url()?>"#" id="cargarMedicion">Medicion</a></li>
-                        </ul>
-                    </li>
-                    <li><a href=<? base_url()?>"index.php/Login/cerrar_sesion" >Cerrar Sesion</a></li>
-                </ul>
-                <div class="clear"></div>
-            </nav>
-        </div>
-        <div class="clear"></div>   
-    </header>
+                            <a href=<? base_url()?>"index.php">Rubricas</a>
 
-    <div id="contenido"></div>
+                            <ul>
 
-<?php
-}
-?>
+                                <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia</a></li>
+                                <li><a href=<? base_url()?>"#" id="cargarMedicion">Medicion</a></li>
+                            </ul>
+                        </li>
+                        <li><a href=<? base_url()?>"#" id="cargarEvaluacion">Evaluar</a></li>
+                        <li><a href=<? base_url()?>"#" id="cargarNotas">Notas</a></li>
+                        <li><a href=<? base_url()?>"index.php/Login/cerrar_sesion" >Cerrar Sesion</a></li>
+                        <li class='bienvenido'><a><? echo 'Bienvenido '.$_SESSION['user_nom'] ?></a></li>
+                    </ul>
 
-<footer>
-    <div class="footer-content width">
-        <ul>
-           <li><h4>Proin accumsan</h4></li>
-           <li><a href="#">Rutrum nulla a ultrices</a></li>
-           <li><a href="#">Blandit elementum</a></li>
-           <li><a href="#">Proin placerat accumsan</a></li>
-           <li><a href="#">Morbi hendrerit libero </a></li>
-           <li><a href="#">Curabitur sit amet tellus</a></li>
-       </ul>
+                    <div class="clear"></div>
+                </nav>
+            </div>
+            <div class="clear"></div>   
+        </header>
 
-       <ul>
-           <li><h4>Condimentum</h4></li>
-           <li><a href="#">Curabitur sit amet tellus</a></li>
-           <li><a href="#">Morbi hendrerit libero </a></li>
-           <li><a href="#">Proin placerat accumsan</a></li>
-           <li><a href="#">Rutrum nulla a ultrices</a></li>
-           <li><a href="#">Cras dictum</a></li>
-       </ul>
+        <div id="contenido"></div>
 
-       <ul>
-        <li><h4>Suspendisse</h4></li>
-        <li><a href="#">Morbi hendrerit libero </a></li>
-        <li><a href="#">Proin placerat accumsan</a></li>
-        <li><a href="#">Rutrum nulla a ultrices</a></li>
-        <li><a href="#">Curabitur sit amet tellus</a></li>
-        <li><a href="#">Donec in ligula nisl.</a></li>
+        <?php
+    }
+    ?>
+
+    <footer>
+        <div class="footer-content width">
+            <ul>
+               <li><h4>Proin accumsan</h4></li>
+               <li><a href="#">Rutrum nulla a ultrices</a></li>
+               <li><a href="#">Blandit elementum</a></li>
+               <li><a href="#">Proin placerat accumsan</a></li>
+               <li><a href="#">Morbi hendrerit libero </a></li>
+               <li><a href="#">Curabitur sit amet tellus</a></li>
+           </ul>
+
+           <ul>
+               <li><h4>Condimentum</h4></li>
+               <li><a href="#">Curabitur sit amet tellus</a></li>
+               <li><a href="#">Morbi hendrerit libero </a></li>
+               <li><a href="#">Proin placerat accumsan</a></li>
+               <li><a href="#">Rutrum nulla a ultrices</a></li>
+               <li><a href="#">Cras dictum</a></li>
+           </ul>
+
+           <ul>
+            <li><h4>Suspendisse</h4></li>
+            <li><a href="#">Morbi hendrerit libero </a></li>
+            <li><a href="#">Proin placerat accumsan</a></li>
+            <li><a href="#">Rutrum nulla a ultrices</a></li>
+            <li><a href="#">Curabitur sit amet tellus</a></li>
+            <li><a href="#">Donec in ligula nisl.</a></li>
+        </ul>
+
+        <ul class="endfooter">
+           <li><h4>Suspendisse</h4></li>
+           <li>Integer mattis blandit turpis, quis rutrum est. Maecenas quis arcu vel felis lobortis iaculis fringilla at ligula. Nunc dignissim porttitor dolor eget porta. <br /><br />
+
+            <div class="social-icons">
+
+                <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+
+                <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+
+                <a href="#"><i class="fa fa-youtube fa-2x"></i></a>
+
+                <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+
+            </div>
+
+        </li>
     </ul>
 
-    <ul class="endfooter">
-       <li><h4>Suspendisse</h4></li>
-       <li>Integer mattis blandit turpis, quis rutrum est. Maecenas quis arcu vel felis lobortis iaculis fringilla at ligula. Nunc dignissim porttitor dolor eget porta. <br /><br />
-
-        <div class="social-icons">
-
-            <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
-
-            <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
-
-            <a href="#"><i class="fa fa-youtube fa-2x"></i></a>
-
-            <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
-
-        </div>
-
-    </li>
-</ul>
-
-<div class="clear"></div>
+    <div class="clear"></div>
 
 </footer>
 

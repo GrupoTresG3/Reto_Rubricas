@@ -26,8 +26,15 @@ class Equipo_model extends CI_Model{
 		}
 	}
 	public function obtener_equipos_evaluar($dato){
+
+		$query2 ="SELECT ID_Equipo FROM Equipo_Usuario WHERE ID_Usuario = $dato";
+		$query2 = $this->db->query($query2);
+		foreach ($query2->result()as $row) {
+						$equipo=$row->ID_Equipo;
+						
+					}
 		
-		$query = "SELECT * FROM Equipo WHERE ID_Reto IN (SELECT ID_Reto FROM Reto WHERE ID_Reto = $dato)";
+		$query = "SELECT * FROM Usuario WHERE ID_Usuario IN (SELECT ID_Usuario FROM Equipo_Usuario WHERE ID_Equipo IN(SELECT ID_Equipo FROM Equipo WHERE ID_Equipo = $equipo))";
 		$query = $this->db->query($query);
 		if ($query->num_rows() > 0){
 			return $query;

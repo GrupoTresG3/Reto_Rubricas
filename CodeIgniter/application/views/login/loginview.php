@@ -19,7 +19,8 @@ $password = array(
   'maxlength' => 100,
   'class' => 'prueba',
   'size' => 25,
-  'required' => 1
+  'required' => 1,
+  'type' => 'password'
 );
 ?>
 
