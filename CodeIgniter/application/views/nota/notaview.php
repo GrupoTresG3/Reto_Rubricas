@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	$("document").ready(function(){
 
-
+		//Muestra las notas del los usuarios evaluados en el equipo del usuario logeado.
 		$.get("<? echo base_url().'index.php/Nota/obtener_nota'?>", function(datos){
 			datos2=JSON.parse(datos);
 			var nombre='';
@@ -29,8 +29,8 @@
 						if (datos3==false){
 
 							$("#tabla_nota").append(
-									`<td>No evaluado</td>`
-									);
+								`<td>No evaluado</td>`
+								);
 
 							$("#tabla_nota").append(
 								`<tr>`)
@@ -41,10 +41,7 @@
 
 							$.each(datos3,function(indice,valor){
 								resul=(valor.Nota*valor.Porcentaje)/100;
-								resultado= resul + resultado;
-								
-
-								
+								resultado= resul + resultado;	
 							});
 							$("#tabla_nota").append(
 								`<td>`+resultado/10+`</td>`
@@ -56,14 +53,9 @@
 
 
 					});					
-
 					nombre= valor.User;
-
 				}
-
 			});					
-
-
 		});
 
 		$.ajaxSetup({
@@ -71,12 +63,6 @@
 		});
 
 	});
-
-
-
-
-
-
 </script>
 
 <table id='tabla_nota'></table>

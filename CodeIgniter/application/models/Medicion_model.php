@@ -7,7 +7,7 @@ class Medicion_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Inserta nueva medicion en la base de datos
 	public function nuevo_medicion($datos){
 		$datosBD = array(
 			'ID_TUsuario' => $this->input->post('ID_TUsuario'),
@@ -16,7 +16,7 @@ class Medicion_model extends CI_Model{
 		);
 		$this->db->insert('Medicion', $datosBD);
 	}
-
+	//Obtiene todas las mediciones
 	public function obtener_mediciones(){
 		$query = $this->db->get('Medicion');
 		if ($query->num_rows() > 0){
@@ -26,7 +26,7 @@ class Medicion_model extends CI_Model{
 		}
 	}
 
-	//Obtiene todo los Ciclos, pero con los valores de las claves referenciadas
+	//Obtiene todo los mediciones, pero con los valores de las claves referenciadas
 	public function obtener_mediciones_valores(){
 		$query = "SELECT ID_Medicion, DESC_TUsuario, COD_Medicion, DESC_Medicion FROM Medicion, TUsuario WHERE Medicion.ID_TUsuario=TUsuario.ID_TUsuario";
 		$query = $this->db->query($query);
@@ -36,7 +36,7 @@ class Medicion_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Obtiene medicion segun el id
 	public function obtener_medicion($id){
 		$where = $this->db->where('ID_Medicion',$id);
 		$query = $this->db->get('Medicion');
@@ -47,7 +47,7 @@ class Medicion_model extends CI_Model{
 		}
 	}	
 
-	//Obtiene Ciclo por ID, pero con los valores de las claves referenciadas
+	//Obtiene medicion por ID, pero con los valores de las claves referenciadas
 	public function obtener_medicion_valores($id){
 		$query = "SELECT ID_Medicion, DESC_TUsuario, COD_Medicion, DESC_Medicion FROM Medicion, TUsuario WHERE Medicion.ID_TUsuario=TUsuario.ID_TUsuario and Medicion.ID_Meidicion = ".$id;
 		$query = $this->db->query($query);
@@ -57,7 +57,7 @@ class Medicion_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Actualiza medicion segun el id
 	public function actualizar_medicion($id,$datos){
 		$datosBD = array(
 			'ID_TUsuario' => $datos['ID_TUsuario'],			
@@ -67,12 +67,12 @@ class Medicion_model extends CI_Model{
 		$this->db->where('ID_Medicion',$id);
 		$this->db->update('Medicion', $datosBD);
 	}	
-
+	//Borra medicion segun el id
 	public function borrar_medicion($id){
 		$this->db->where('ID_Medicion',$id);
 		$this->db->delete('Medicion');
 	}
-
+	//Filtra dependiendo el tipo de usuario 
 	public function filtrar_medicion_valores($filtro){
 		$query = "SELECT ID_Medicion, DESC_TUsuario, COD_Medicion, DESC_Medicion FROM Medicion, TUsuario WHERE Medicion.ID_TUsuario=TUsuario.ID_TUsuario";
 		if ($filtro['ID_TUsuario'] != 0){

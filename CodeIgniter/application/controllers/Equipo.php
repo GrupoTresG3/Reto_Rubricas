@@ -9,10 +9,10 @@ class Equipo extends CI_Controller {
 		$this->load->helper('url');		
 		$this->load->model('Equipo_model');
 		$this->load->model('Reto_model');
-	
+
 	}
 
-	//ok
+	//Cargamos la pagina principal
 	public function index()
 	{
 		$datos['segmento']=$this->uri->segment(3);
@@ -28,7 +28,7 @@ class Equipo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para crear un nuevo equipo
 	public function nuevo(){
 		$datos['retos'] = $this->Reto_model->obtener_retos();
 		$this->load->view('header');
@@ -36,18 +36,18 @@ class Equipo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para inserta un nuevo equipo
 	public function nuevo_equipo(){
 		$datos = array(
 			'ID_Reto' => $this->input->post('ID_Reto'),
 			'COD_Equipo' => $this->input->post('COD_Equipo'),									
 			'DESC_Equipo' => $this->input->post('DESC_Equipo')
-		);
+			);
 		$this->Equipo_model->nuevo_equipo($datos);
 		redirect('Equipo');		
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para editar un equipo
 	public function editar(){
 		$datos['segmento']=$this->uri->segment(3);
 		$datos['equipos']=$this->Equipo_model->obtener_equipo($datos['segmento']);
@@ -57,30 +57,30 @@ class Equipo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para editar un equipo
 	public function actualizar(){
 		$datos = array(
 			'ID_Reto' => $this->input->post('ID_Reto'),
 			'COD_Equipo' => $this->input->post('COD_Equipo'),									
 			'DESC_Equipo' => $this->input->post('DESC_Equipo')
-		);
+			);
 		$id = $this->uri->segment(3);
 		$this->Equipo_model->actualizar_equipo($id,$datos);
 		redirect('Equipo');
 	}
 
+	//Funcion que realiza la SQL para borrar un equipo
 	public function borrar(){
 		$id = $this->uri->segment(3);
 		$this->Equipo_model->borrar_equipo($id);
 		redirect('Equipo');
 	}	
 
+	//Funcion que nos mostrara unos filtros para una busqueda mas exacta
 	public function filtrar_equipo(){
 		$datos = array(
 			'ID_Reto' => $this->input->post('ID_Reto'),
-		);	
-		//$filtro_centro = $this->input->post('ID_Centro');
-		//$filtro_curso = $this->input->post('ID_Curso');	
+			);	
 
 		$datos['equipos']=$this->Equipo_model->filtrar_equipo_valores($datos);	
 		$datos['retos'] = $this->Reto_model->obtener_retos();

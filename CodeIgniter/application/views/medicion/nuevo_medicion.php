@@ -20,38 +20,36 @@ $DESC_Medicion = array(
 	);
 
 
-	if ($tusuarios){
-		$ID_TUsuario = array();
-		foreach ($tusuarios->result() as $tusuario) {
-			$ID_TUsuario[$tusuario->ID_TUsuario] = $tusuario->DESC_TUsuario;
-		}	
-	}
-	else{
-		$ID_Reto = array(
-    		0         => 'No hay TUsuarios'
+if ($tusuarios){
+	$ID_TUsuario = array();
+	foreach ($tusuarios->result() as $tusuario) {
+		$ID_TUsuario[$tusuario->ID_TUsuario] = $tusuario->DESC_TUsuario;
+	}	
+}
+else{
+	$ID_Reto = array(
+		0         => 'No hay TUsuarios'
 		);
-	}
+}
 
 ?>
 
 <div id="centro2">
 	<?php 
-	   if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
 		?>
-	<?php echo form_open('Medicion/nuevo_medicion',$form);?>
-	<?php echo form_label('TUsuario: ','ID_TUsuario'); ?>
-	<?php
-	//DESPLEGABLE DE CENTRO
-	echo form_dropdown('ID_TUsuario', $ID_TUsuario,1);
-	?>
-	<br>
-
-	<?php echo form_label('Código de Medicion: ','COD_Medicion'); ?>
-	<?php echo form_input($COD_Medicion); ?>
-	<br>
-	<?php echo form_label('Descripción de Medicion: ','DESC_Medicion'); ?>
-	<?php echo form_input($DESC_Medicion); ?>
-	<br>	
-	<?php echo form_submit('Crear','Crear'); ?>
-	<?php echo form_close();?>
-</div>
+		<?php echo form_open('Medicion/nuevo_medicion',$form);?>
+		<?php echo form_label('TUsuario: ','ID_TUsuario'); ?>
+		<?php
+		echo form_dropdown('ID_TUsuario', $ID_TUsuario,1);
+		?>
+		<br>
+		<?php echo form_label('Código de Medicion: ','COD_Medicion'); ?>
+		<?php echo form_input($COD_Medicion); ?>
+		<br>
+		<?php echo form_label('Descripción de Medicion: ','DESC_Medicion'); ?>
+		<?php echo form_input($DESC_Medicion); ?>
+		<br>	
+		<?php echo form_submit('Crear','Crear'); ?>
+		<?php echo form_close();?>
+	</div>

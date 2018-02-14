@@ -7,7 +7,7 @@ session_start();
 		printf('Gestión de EQUIPOS_USUARIOS<br>');
 		printf('--------------------------------------------------------------------<br>');
 		
-		//FILTROS DE CURSO Y GRUPO
+		//FILTROS DE EQUIPOS Y USUARIOS
 		if ($equipos){
 			$ID_Equipo = array(
 	    		0         => 'Todos los Equipos'
@@ -43,13 +43,11 @@ session_start();
 			<?php echo form_open('Equipo_Usuario/filtrar_equipo_usuario');?>
 			<?php echo form_label('Equipo: ','ID_Equipo'); ?>
 			<?php
-			//DESPLEGABLE DE CENTRO
 			echo form_dropdown('ID_Equipo', $ID_Equipo);
 			?>
 			<br/>
 			<?php echo form_label('Usuario: ','ID_Usuario'); ?>
 			<?php
-			//DESPLEGABLE DE CURSOS
 			echo form_dropdown('ID_Usuario', $ID_Usuario);
 			?>
 			<br/>

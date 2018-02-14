@@ -24,18 +24,18 @@ $DESC_Medicion = array(
 	);
 
 
-	if ($tusuarios){
-		$ID_TUsuario = array();
-		foreach ($tusuarios->result() as $tusuario) {
-			$ID_TUsuario[$tusuario->ID_TUsuario] = $tusuario->ID_TUsuario;
-		}	
-	}
-	else{
-		$ID_TUsuario
-		 = array(
-    		0         => 'No hay TUsuarios'
-		);
+if ($tusuarios){
+	$ID_TUsuario = array();
+	foreach ($tusuarios->result() as $tusuario) {
+		$ID_TUsuario[$tusuario->ID_TUsuario] = $tusuario->ID_TUsuario;
 	}	
+}
+else{
+	$ID_TUsuario
+	= array(
+		0         => 'No hay TUsuarios'
+		);
+}	
 
 ?>
 
@@ -43,11 +43,9 @@ $DESC_Medicion = array(
 	<?php echo form_open('Medicion/actualizar/'.$mediciones->result()[0]->ID_Medicion);?>
 	<?php echo form_label('Medicion: ','ID_Medicion'); ?>
 	<?php
-	//DESPLEGABLE DE CENTRO
 	echo form_dropdown('ID_TUsuario', $ID_TUsuario, $mediciones->result()[0]->ID_TUsuario);
 	?>
 	<br>
-
 	<?php echo form_label('Código de Equipo: ','COD_Medicion'); ?>
 	<?php echo form_input($COD_Medicion); ?>
 	<br>

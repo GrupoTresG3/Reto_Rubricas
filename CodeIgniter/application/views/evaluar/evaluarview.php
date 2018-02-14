@@ -18,7 +18,7 @@
 </style>
 <script type="text/javascript">
 	$("document").ready(function(){
-
+		//Obtienes los retos dependiendo del usuario que esta logeado
 		$.get("<? echo base_url().'index.php/Evaluar/obtener_retos'?>", function(datos){
 			console.log(datos);
 					//alert(datos);
@@ -32,7 +32,7 @@
 
 		var dato=[];
 		var user=0;
-
+		//Obtengo los usuarios del equipo en el que esta el usuario logeado y las notas corresppodientes que el usuario logeado a evaluado a los susuarios de su equipo
 		$("#retos").on('change',function(){
 			$("#tabla_reto").empty();
 			$('.vertabla').removeClass('vertabla');
@@ -80,6 +80,7 @@
 
 						console.log(datos2);
 						if (datos3==false){
+							//Si aun no esta evaluado sus notas seran 0.0
 							$.each(datos2,function(indice,valor){
 								$("#tabla_reto").append(
 									`<td>0.0</td>`
@@ -125,7 +126,7 @@
 		});
 
 
-
+		//Cuando evaluas se crea una tabla mostrando competencias dependiendo del usuario logeado se selecciona la medicion para coger la competencias correctas
 		$('#tabla_reto').on('click','input',function (){
 			var id2 = $('input:radio[name="evaluar"]:checked').data('idusuario');
 			user=id2;

@@ -11,7 +11,7 @@ class Curso extends CI_Controller {
 		$this->load->model('Curso_model');
 	}
 
-	//ok
+	//Cargamos la pagina principal
 	public function index()
 	{
 		$datos['segmento']=$this->uri->segment(3);
@@ -26,14 +26,14 @@ class Curso extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para crear un nuevo curso
 	public function nuevo(){
 		$this->load->view('header');
 		$this->load->view('curso/nuevo_curso');
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para inserta un nuevo curso
 	public function nuevo_curso(){
 		$datos = array(
 			'COD_Curso' => $this->input->post('COD_Curso'),
@@ -42,7 +42,7 @@ class Curso extends CI_Controller {
 		redirect('Curso');		
 	}
 
-	//
+	//Aqui se visualiza el formulario para editar un curso
 	public function editar(){
 		$datos['segmento']=$this->uri->segment(3);
 		$datos['cursos']=$this->Curso_model->obtener_curso($datos['segmento']);
@@ -51,6 +51,7 @@ class Curso extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	//Funcion que realiza la SQL para editar un curso
 	public function actualizar(){
 		$datos = array(
 			'COD_Curso' => $this->input->post('COD_Curso')
@@ -60,6 +61,7 @@ class Curso extends CI_Controller {
 		redirect('Curso');
 	}
 
+	//Funcion que realiza la SQL para borrar un curso
 	public function borrar(){
 		$id = $this->uri->segment(3);
 		$this->Curso_model->borrar_curso($id);

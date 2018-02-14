@@ -12,7 +12,7 @@ class Usuario extends CI_Controller {
 		$this->load->model('Usuario_model');		
 	}
 
-	//ok
+	//Cargamos la pagina principal
 	public function index()
 	{
 		$datos['segmento']=$this->uri->segment(3);
@@ -29,7 +29,7 @@ class Usuario extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para crear un nuevo Usuario
 	public function nuevo(){
 		$datos['centros'] = $this->Centro_model->obtener_centros();
 		$datos['tusuarios'] = $this->TUsuario_model->obtener_tusuarios();
@@ -38,7 +38,7 @@ class Usuario extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para inserta un nuevo Usuario
 	public function nuevo_usuario(){
 		$datos = array(
 			
@@ -52,12 +52,12 @@ class Usuario extends CI_Controller {
 			'Dni' => $this->input->post('Dni'),
 
 
-		);
+			);
 		$this->Usuario_model->nuevo_usuario($datos);
 		redirect('Usuario');		
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para editar un Usuario
 	public function editar(){
 		$datos['segmento']=$this->uri->segment(3);
 		$datos['usuarios']=$this->Usuario_model->obtener_usuario($datos['segmento']);
@@ -68,7 +68,7 @@ class Usuario extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok 
+	//Funcion que realiza la SQL para editar un Usuario
 	public function actualizar(){
 		$datos = array(
 			'ID_Centro' => $this->input->post('ID_Centro'),
@@ -79,25 +79,25 @@ class Usuario extends CI_Controller {
 			'Apellidos' => $this->input->post('Apellidos'),
 			'Email' => $this->input->post('Email'),
 			'Dni' => $this->input->post('Dni'),
-		);
+			);
 		$id = $this->uri->segment(3);
 		$this->Usuario_model->actualizar_usuario($id,$datos);
 		redirect('Usuario');
 	}
 
+	//Funcion que realiza la SQL para borrar un Usuario
 	public function borrar(){
 		$id = $this->uri->segment(3);
 		$this->Usuario_model->borrar_usuario($id);
 		redirect('Usuario');
 	}	
 
+	//Funcion que nos mostrara unos filtros para una busqueda mas exacta
 	public function filtrar_usuario(){
 		$datos = array(
 			'ID_TUsuario' => $this->input->post('ID_TUsuario'),
 			'ID_Centro' => $this->input->post('ID_Centro'),
-		);	
-		//$filtro_centro = $this->input->post('ID_Centro');
-		//$filtro_curso = $this->input->post('ID_TUsuario');	
+			);	
 
 		$datos['usuarios']=$this->Usuario_model->filtrar_usuario_valores($datos);	
 		$datos['centros'] = $this->Centro_model->obtener_centros();

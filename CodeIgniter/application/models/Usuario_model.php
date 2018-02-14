@@ -7,7 +7,7 @@ class Usuario_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Inserta nuevo usuario a la abse de datos
 	public function nuevo_usuario($datos){
 		$passwordmd5=md5($_POST['Password']);
 		$datosBD = array(
@@ -22,7 +22,7 @@ class Usuario_model extends CI_Model{
 		);
 		$this->db->insert('Usuario', $datosBD);
 	}
-
+	//Obtiene todos los usuarios
 	public function obtener_usuarios(){
 		$query = $this->db->get('Usuario');
 		if ($query->num_rows() > 0){
@@ -31,6 +31,7 @@ class Usuario_model extends CI_Model{
 			return false;
 		}
 	}
+	//Obtiene usuarios dependiendo del equipo seleccionado
 	public function obtener_usuarios_evaluar($dato){
 	
 		$query = "SELECT * FROM Usuario WHERE ID_Usuario IN (SELECT ID_Usuario FROM Equipo_Usuario WHERE ID_Equipo = $dato)";
@@ -42,7 +43,7 @@ class Usuario_model extends CI_Model{
 		}	
 	}
 
-	//Obtiene todo los Ciclos, pero con los valores de las claves referenciadas
+	//Obtiene todo los usuarios, pero con los valores de las claves referenciadas
 	public function obtener_usuarios_valores(){
 		$query = "SELECT ID_Usuario, DESC_TUsuario, DESC_Centro, User,Password, Nombre, Apellidos, Email, Dni FROM Usuario, TUsuario, Centro WHERE Usuario.ID_Centro = Centro.ID_Centro and Usuario.ID_TUsuario = TUsuario.ID_TUsuario";
 		$query = $this->db->query($query);
@@ -52,7 +53,7 @@ class Usuario_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Obtiene usuario segun el id
 	public function obtener_usuario($id){
 		$where = $this->db->where('ID_Usuario',$id);
 		$query = $this->db->get('Usuario');
@@ -63,7 +64,7 @@ class Usuario_model extends CI_Model{
 		}
 	}	
 
-	//Obtiene Ciclo por ID, pero con los valores de las claves referenciadas
+	//Obtiene usuario por ID, pero con los valores de las claves referenciadas
 	public function obtener_usuario_valores($id){
 		$query = "SELECT ID_Usuario,  DESC_TUsuario, DESC_Centro, User,Password, Nombre, Apellidos, Email, Dni FROM Usuario, Tusuario, Centro WHERE Usuario.ID_Centro = Centro.ID_Centro and Usuario.ID_TUsuario = TUsuario.ID_TUsuario and Usuario.ID_Usuario = ".$id;
 		$query = $this->db->query($query);
@@ -73,7 +74,7 @@ class Usuario_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Actualiza usuario segun el id
 	public function actualizar_usuario($id,$datos){
 		$passwordmd5=md5($datos['Password']);
 		$datosBD = array(
@@ -89,12 +90,12 @@ class Usuario_model extends CI_Model{
 		$this->db->where('ID_Usuario',$id);
 		$this->db->update('Usuario', $datosBD);
 	}	
-
+	//Borra usuario segun el id
 	public function borrar_usuario($id){
 		$this->db->where('ID_Usuario',$id);
 		$this->db->delete('Usuario');
 	}
-
+	//Filtra segun el tusuario y el centro seleccionados
 	public function filtrar_usuario_valores($filtro){
 		$query = "SELECT ID_Usuario,  DESC_TUsuario, DESC_Centro, User,Password, Nombre, Apellidos, Email, Dni FROM Usuario, TUsuario, Centro WHERE Usuario.ID_Centro = Centro.ID_Centro and Usuario.ID_TUsuario = TUsuario.ID_TUsuario";
 		if ($filtro['ID_TUsuario'] != 0){

@@ -7,7 +7,7 @@ class Login_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Obtiene el usuario que tenga el mismo user y password que se a recibido
 	public function obtener_tipo_usuario(){
 
 		if(isset($_POST['user'])){
@@ -37,6 +37,7 @@ class Login_model extends CI_Model{
 					}else{
 						echo $user_id;
 						session_start();
+						//Manda variables 
 						$_SESSION["user_id"]=$user_id; 
 						$_SESSION["user_ev"]=$user_ev;
 						$_SESSION["user_md"]=$user_md; 
@@ -46,6 +47,7 @@ class Login_model extends CI_Model{
 			}
 		}
 	}
+	//Cierra sesion
 	public function cerrar_sesion(){
 		session_start();
 		session_destroy(); 

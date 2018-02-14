@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 session_start();
 ?>
 <style>
@@ -30,7 +30,6 @@ session_start();
 			foreach ($competencias->result() as $competencia) {
 				printf('<tr class="primero">',$competencia->ID_Competencia,$competencia->ID_Competencia);
 				foreach ($competencia as $detalle) {
-					//Para curso y Centro hay que sacar su COD_CENTRO y COD_CURSO
 					printf('<td>
 					<a href="%sindex.php/Competencia/editar/%s">%s</a>
 					</td>',base_url(),$competencia->ID_Competencia,$detalle);

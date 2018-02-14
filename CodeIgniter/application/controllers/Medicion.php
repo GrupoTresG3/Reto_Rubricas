@@ -12,7 +12,7 @@ class Medicion extends CI_Controller {
 	
 	}
 
-	//ok
+	//Cargamos la pagina principal
 	public function index()
 	{
 		$datos['segmento']=$this->uri->segment(3);
@@ -28,7 +28,7 @@ class Medicion extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para crear una nueva medicion
 	public function nuevo(){
 		$datos['tusuarios'] = $this->TUsuario_model->obtener_tusuarios();
 		$this->load->view('header');
@@ -36,7 +36,7 @@ class Medicion extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para inserta una nueva medicion
 	public function nuevo_medicion(){
 		$datos = array(
 			'ID_TUsuario' => $this->input->post('ID_TUsuario'),
@@ -47,7 +47,7 @@ class Medicion extends CI_Controller {
 		redirect('Medicion');		
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para editar una medicion
 	public function editar(){
 		$datos['segmento']=$this->uri->segment(3);
 		$datos['mediciones']=$this->Medicion_model->obtener_medicion($datos['segmento']);
@@ -57,7 +57,7 @@ class Medicion extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para editar una medicion
 	public function actualizar(){
 		$datos = array(
 			'ID_TUsuario' => $this->input->post('ID_TUsuario'),
@@ -69,18 +69,18 @@ class Medicion extends CI_Controller {
 		redirect('Medicion');
 	}
 
+	//Funcion que realiza la SQL para borrar una medicion
 	public function borrar(){
 		$id = $this->uri->segment(3);
 		$this->Medicion_model->borrar_medicion($id);
 		redirect('Medicion');
 	}	
 
+	//Funcion que nos mostrara unos filtros para una busqueda mas exacta
 	public function filtrar_medicion(){
 		$datos = array(
 			'ID_TUsuario' => $this->input->post('ID_TUsuario'),
 		);	
-		//$filtro_centro = $this->input->post('ID_Centro');
-		//$filtro_curso = $this->input->post('ID_Curso');	
 
 		$datos['mediciones']=$this->Medicion_model->filtrar_medicion_valores($datos);	
 		$datos['tusuarios'] = $this->TUsuario_model->obtener_tusuarios();

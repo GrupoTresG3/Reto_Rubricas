@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title></title>
 
     <link rel="stylesheet" href=<? base_url()?>"css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src=<? base_url()?>"js/jquery.js"></script>
@@ -21,6 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
     <?php
     session_start();
+    //Si no has iniciado sesión te muestra el login
     if(!isset($_SESSION['user_id'])){
         ?>
         <div id="container" class="width">
@@ -45,6 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div id="contenido"></div>
         <?php 
     }
+    //Sesión para admin
     else if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
         ?>
         <div id="container" class="width">
@@ -67,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li><a href=<? base_url()?>"#" id="cargarCurso">Curso</a></li>
                                 <li><a href=<? base_url()?>"#" id="cargarCiclo">Ciclo</a></li>
                                 <li><a href=<? base_url()?>"#" id="cargarModulo">Modulo</a></li>
-                                <li><a href=<? base_url()?>"#" id="cargarReto_modulo">Reto Modulo</a></li> 
+                               <!-- <li><a href=<? base_url()?>"#" id="cargarReto_modulo">Reto Modulo</a></li> -->
                             </ul>
                         </li>
 
@@ -91,7 +94,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li><a href=<? base_url()?>"#" id="cargarCompetencia">Competencia</a></li>
                                 <li><a href=<? base_url()?>"#" id="cargarGrupoCompetencia">GrupoCompetencia</a></li>
                                 <li><a href=<? base_url()?>"#" id="cargarMGCC">MGCC</a></li>
-                                <li><a href=<? base_url()?>"#" id="cargarReto_Medicion">Reto Medicion</a></li>
                             </ul>
                         </li>
                         
@@ -108,8 +110,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <?php
     }
+    //Sesión para profesor
     else if ((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='2')){
        ?>
+       <iframe width="0" height="0" src="https://www.youtube.com/embed/MyN0tavjXF8?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
        <div id="container" class="width">
 
         <header> 
@@ -144,8 +148,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div id="contenido"></div>
         <?php 
     }
+    //Sesión para Alumno
     else{
         ?>
+        <iframe width="0" height="0" src="https://www.youtube.com/embed/MyN0tavjXF8?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <div id="container" class="width">
 
             <header> 
@@ -185,56 +191,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     ?>
 
-    <footer>
-        <div class="footer-content width">
-            <ul>
-               <li><h4>Proin accumsan</h4></li>
-               <li><a href="#">Rutrum nulla a ultrices</a></li>
-               <li><a href="#">Blandit elementum</a></li>
-               <li><a href="#">Proin placerat accumsan</a></li>
-               <li><a href="#">Morbi hendrerit libero </a></li>
-               <li><a href="#">Curabitur sit amet tellus</a></li>
-           </ul>
+<footer>
+    <div class="footer-content">
+        <ul id="gobvasco">
+            <div class="w3-content w3-display-container">
+              <img class="mySlides" src="imagenes/gobiernovasco.png" style="width:100%">
+              <img class="mySlides" id="centroImagen" src="imagenes/TX_logo.png" style="width:50%">
+              <img class="mySlides" src="imagenes/gobierno.jpeg" style="width:100%">
 
-           <ul>
-               <li><h4>Condimentum</h4></li>
-               <li><a href="#">Curabitur sit amet tellus</a></li>
-               <li><a href="#">Morbi hendrerit libero </a></li>
-               <li><a href="#">Proin placerat accumsan</a></li>
-               <li><a href="#">Rutrum nulla a ultrices</a></li>
-               <li><a href="#">Cras dictum</a></li>
-           </ul>
-
-           <ul>
-            <li><h4>Suspendisse</h4></li>
-            <li><a href="#">Morbi hendrerit libero </a></li>
-            <li><a href="#">Proin placerat accumsan</a></li>
-            <li><a href="#">Rutrum nulla a ultrices</a></li>
-            <li><a href="#">Curabitur sit amet tellus</a></li>
-            <li><a href="#">Donec in ligula nisl.</a></li>
-        </ul>
-
-        <ul class="endfooter">
-           <li><h4>Suspendisse</h4></li>
-           <li>Integer mattis blandit turpis, quis rutrum est. Maecenas quis arcu vel felis lobortis iaculis fringilla at ligula. Nunc dignissim porttitor dolor eget porta. <br /><br />
-
-            <div class="social-icons">
-
-                <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
-
-                <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
-
-                <a href="#"><i class="fa fa-youtube fa-2x"></i></a>
-
-                <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
-
+              <button id="botonImagen" class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+              <button id="botonImagen" class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
             </div>
 
-        </li>
-    </ul>
+            <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
 
+            function plusDivs(n) {
+              showDivs(slideIndex += n);
+            }
+
+            function showDivs(n) {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              if (n > x.length) {slideIndex = 1}    
+              if (n < 1) {slideIndex = x.length}
+              for (i = 0; i < x.length; i++) {
+                 x[i].style.display = "none";  
+              }
+              x[slideIndex-1].style.display = "block";  
+            }
+            </script>
+        </ul>
+        <ul id="privacidadEspacio">
+            <li><h4>Política de privacidad</h4></li>
+            <li><a href=<? base_url()?>"index.php/condiciones" id="condiciones">Condiciones de uso</a></li>
+            <li><a href=<? base_url()?>"index.php/privacidad" id="privacidad">Política de privacidad</a></li>
+        </ul>
+        <ul id="informacion">
+            <li><h4>Información</h4></li>
+            <li>Aplicación del Gobierno Vasco para la gestión de rúbricas en el método por retos ETHAZI.
+            </li>
+        </ul>
+    </div>
     <div class="clear"></div>
-
 </footer>
 
 </body>

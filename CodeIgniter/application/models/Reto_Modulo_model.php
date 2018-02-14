@@ -7,7 +7,7 @@ class Reto_Modulo_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Inserta un nuevo reto modulo en la base de datos
 	public function nuevo_reto_modulo($datos){
 		$datosBD = array(
 			'ID_Reto' => $this->input->post('ID_Reto'),
@@ -18,7 +18,7 @@ class Reto_Modulo_model extends CI_Model{
 		);
 		$this->db->insert('Reto_Modulo', $datosBD);
 	}
-
+	//Obtiene todos los retos modulos
 	public function obtener_retos_modulos(){
 		$query = $this->db->get('Reto_Modulo');
 		if ($query->num_rows() > 0){
@@ -28,7 +28,7 @@ class Reto_Modulo_model extends CI_Model{
 		}
 	}
 
-	//Obtiene todo los Ciclos, pero con los valores de las claves referenciadas
+	//Obtiene todo los retos modulos, pero con los valores de las claves referenciadas
 	public function obtener_retos_modulos_valores(){
 		$query = "SELECT ID_Reto_modulo,DESC_Reto, DESC_Modulo, User, IN_Extendido, IN_EAbierta FROM Reto_Modulo, Reto, Modulo, Usuario WHERE Reto_Modulo.ID_Reto=Reto.ID_Reto and Reto_Modulo.ID_Modulo= Modulo.ID_Modulo and Reto_Modulo.ID_UAdmin = Usuario.ID_Usuario";
 		$query = $this->db->query($query);
@@ -38,7 +38,7 @@ class Reto_Modulo_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Obtiene el reto modulo segun el id
 	public function obtener_reto_modulo($id){
 		$where = $this->db->where('ID_Reto_modulo',$id);
 		$query = $this->db->get('Reto_Modulo');
@@ -49,7 +49,7 @@ class Reto_Modulo_model extends CI_Model{
 		}
 	}	
 
-	//Obtiene Ciclo por ID, pero con los valores de las claves referenciadas
+	//Obtiene reto modulo por ID, pero con los valores de las claves referenciadas
 	public function obtener_reto_modulo_valores($id){
 		$query = "SELECT ID_Reto_modulo, DESC_Reto, DESC_Modulo, User, IN_Extendido, IN_EAbierta FROM Reto_Modulo, Reto, Modulo WHERE Reto_Modulo.ID_Reto=Reto.ID_Reto and Reto_Modulo.ID_UAdmin = Usuario.ID_Usuario and Reto_Modulo.ID_Modulo= Modulo.ID_Modulo and Reto_Modulo.ID_Reto_modulo = ".$id;
 		$query = $this->db->query($query);
@@ -59,7 +59,7 @@ class Reto_Modulo_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Actualiza el reto modulo segun el id
 	public function actualizar_reto_modulo($id,$datos){
 		$datosBD = array(
 			'ID_Reto' => $datos['ID_Reto'],
@@ -71,12 +71,12 @@ class Reto_Modulo_model extends CI_Model{
 		$this->db->where('ID_Reto_modulo',$id);
 		$this->db->update('Reto_Modulo', $datosBD);
 	}	
-
+	//Borra el reto modulo segun el id
 	public function borrar_reto_modulo($id){
 		$this->db->where('ID_Reto_modulo',$id);
 		$this->db->delete('Reto_Modulo');
 	}
-
+	//Filtra dependiendo el reto, modulo y usuario seleccionados
 	public function filtrar_reto_modulo_valores($filtro){
 		$query = "SELECT ID_Reto_modulo,DESC_Reto, DESC_Modulo, User, IN_Extendido, IN_EAbierta FROM Reto_Modulo, Reto, Modulo, Usuario WHERE Reto_Modulo.ID_Reto=Reto.ID_Reto and Reto_Modulo.ID_Modulo= Modulo.ID_Modulo and Reto_Modulo.ID_UAdmin = Usuario.ID_Usuario";
 		if ($filtro['ID_Reto'] != 0){

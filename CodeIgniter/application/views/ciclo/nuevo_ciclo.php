@@ -1,4 +1,4 @@
-<?php
+	<?php
 session_start();
 	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
 ?>
@@ -65,7 +65,6 @@ $DESC_Ciclo = array(
 	echo form_dropdown('ID_Curso', $ID_Curso,1);
 	?>
 	<br>
-
 	<?php echo form_label('Código de Ciclo: ','COD_Ciclo'); ?>
 	<?php echo form_input($COD_Ciclo); ?>
 	<br>

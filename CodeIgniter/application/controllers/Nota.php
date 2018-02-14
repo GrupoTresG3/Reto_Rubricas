@@ -12,7 +12,7 @@ class Nota extends CI_Controller {
 		$this->load->model('Nota_model');
 	}
 
-  //ok
+  	//Cargamos la pagina principal
 	public function index()
 	{ 
 		$this->load->view('header');
@@ -20,6 +20,7 @@ class Nota extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	//Funcion para obtener las notas dependiendo del user_evaluador
 	public function obtener_nota(){
 
 		$dato=$_SESSION['user_ev'];
@@ -27,6 +28,7 @@ class Nota extends CI_Controller {
 		echo json_encode($datos['notas']->result());
 	}
 
+	//Funcion para obtener las notas filtradas
 	public function obtener_nota_filtro(){
 		$dato=$_GET['nota'];
 		$datos['nota'] = $this->Nota_model->obtener_nota_filtro($dato); 

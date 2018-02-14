@@ -60,11 +60,12 @@ body {
     }
     #centro{
     	margin-top: 50px;
+        font-weight: bold;
     }
 
     #centro2{
     	margin-bottom: 50px;
-    	
+        font-weight: bold;
         border: 3px solid #474F58;
         width: 50%;
         padding: 1%;
@@ -101,9 +102,9 @@ body {
 
     #login{
         margin-bottom: 50px;
-        
+        font-weight: bold;
         border: 3px solid #474F58;
-        width: 30%;
+        width: 35%;
         padding: 1%;
         margin-left: 30%;
         border-radius: 5px;
@@ -134,6 +135,7 @@ body {
         font-weight: bold;
 
     }
+
     #tabla_reto tr:first-child {
         font-weight: bold;
     }
@@ -148,30 +150,47 @@ body {
       left: 0;
       height: 100px;
     }
+    
+    #centro h1{
+        margin: 0 10px 20px;
+    }
 
+    #politica{
+        margin: 25px;
+        font-size: 18px;
+        font-weight: normal;
+        text-align: justify;
+    }
+
+    #politica h3{
+       margin: 20px 0 10px 10px;
+    }
+
+    #politica ul{
+        margin: 10px 0  0 100px;
+    }
 
 @media screen and (max-width: 770px) {
 
-#container {
-    width: auto;
-    margin: 0 auto;
-}
-#centro{
-	margin-top: 50px;
-	
-}
+    #container {
+        width: auto;
+        margin: 0 auto;
+    }
+    #centro{
+    	margin-top: 50px;
+    	
+    }
 
-#centro2{
-	margin-bottom: 50px;
-	
-}
+    #centro2{
+    	margin-bottom: 50px;
+    	
+    }
 
-#margenEditar {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	
-}
-
+    #margenEditar {
+    	margin-top: 50px;
+    	margin-bottom: 50px;
+    	
+    }
 
 @media screen and (max-width: 740px) {
 
@@ -237,7 +256,6 @@ body {
 
     #login{
         margin-bottom: 50px;
-       
         border: 3px solid #474F58;
         width: 50%;
         padding: 1%;
@@ -259,13 +277,17 @@ body {
     select {
         margin: 3px;
     }
+
+    td {
+        width: 300px;
+    }
 }
 
 
 @media screen and (max-width: 540px) {
 
     body { 
-        font-size: 0.8em; 
+        font-size: 0.9em; 
     }
 
     header { 
@@ -315,9 +337,8 @@ body {
 
     #login{
         margin-bottom: 50px;
-      
         border: 3px solid #474F58;
-        width: 65%;
+        width: 85%;
         padding: 1%;
         margin-left: 15%;
         border-radius: 5px;
@@ -339,6 +360,9 @@ body {
         margin: 3px;
         width: 65%;
     }
-
+    
+    #botonImagen{
+        margin: 0px;
+    }
 
 }

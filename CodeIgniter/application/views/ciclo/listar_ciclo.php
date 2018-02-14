@@ -1,4 +1,4 @@
-<?php
+	<?php
 session_start();
 	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
 ?>
@@ -7,7 +7,7 @@ session_start();
 		printf('Gestión de CICLOS<br>');
 		printf('--------------------------------------------------------------------<br>');
 		
-		//FILTROS DE CURSO Y GRUPO
+		//Filtros de Centros y Cursos
 		if ($centros){
 			$ID_Centro = array(
 	    		0         => 'Todos los Centros'
@@ -43,13 +43,11 @@ session_start();
 			<?php echo form_open('Ciclo/filtrar_ciclo');?>
 			<?php echo form_label('Centro: ','ID_Centro'); ?>
 			<?php
-			//DESPLEGABLE DE CENTRO
 			echo form_dropdown('ID_Centro', $ID_Centro);
 			?>
 			<br/>
 			<?php echo form_label('Curso: ','ID_Curso'); ?>
 			<?php
-			//DESPLEGABLE DE CURSOS
 			echo form_dropdown('ID_Curso', $ID_Curso);
 			?>
 			<br/>
@@ -78,7 +76,6 @@ session_start();
 			foreach ($ciclos->result() as $ciclo) {
 				printf('<tr class="primero">',$ciclo->ID_Ciclo,$ciclo->ID_Ciclo);
 				foreach ($ciclo as $detalle) {
-					//Para curso y Centro hay que sacar su COD_CENTRO y COD_CURSO
 					printf('<td>
 					<a href="%sindex.php/Ciclo/editar/%s">%s</a>
 					</td>',base_url(),$ciclo->ID_Ciclo,$detalle);

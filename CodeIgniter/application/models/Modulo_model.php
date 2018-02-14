@@ -7,7 +7,7 @@ class Modulo_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Inserta nuevo modulo a la base de datos
 	public function nuevo_modulo($datos){
 		$datosBD = array(
 			'ID_Ciclo' => $this->input->post('ID_Ciclo'),
@@ -16,7 +16,7 @@ class Modulo_model extends CI_Model{
 		);
 		$this->db->insert('Modulo', $datosBD);
 	}
-
+	//Obtiene todos los modulos
 	public function obtener_modulos(){
 		$query = $this->db->get('Modulo');
 		if ($query->num_rows() > 0){
@@ -26,7 +26,7 @@ class Modulo_model extends CI_Model{
 		}
 	}
 
-	//Obtiene todo los Ciclos, pero con los valores de las claves referenciadas
+	//Obtiene todo los modulos, pero con los valores de las claves referenciadas
 	public function obtener_modulos_valores(){
 		$query = "SELECT ID_Modulo, DESC_Ciclo,DESC_Centro, COD_Curso,  DESC_Modulo, COD_Modulo FROM Ciclo, Modulo, Curso, Centro WHERE Ciclo.ID_Ciclo=Modulo.ID_Ciclo and Ciclo.ID_Centro=Centro.ID_Centro and Ciclo.ID_Curso= Curso.ID_Curso";
 
@@ -38,7 +38,7 @@ class Modulo_model extends CI_Model{
 		}		
 	
 	}	
-
+	//Obtiene el modulo segun el id
 	public function obtener_modulo($id){
 		$where = $this->db->where('ID_Modulo',$id);
 		$query = $this->db->get('Modulo');
@@ -49,7 +49,7 @@ class Modulo_model extends CI_Model{
 		}
 	}	
 
-	//Obtiene Ciclo por ID, pero con los valores de las claves referenciadas
+	//Obtiene modulo por ID, pero con los valores de las claves referenciadas
 	public function obtener_modulo_valores($id){
 		$query = "SELECT ID_Modulo, DESC_Ciclo,DESC_Centro, COD_Curso,  DESC_Modulo, COD_Modulo FROM Ciclo, Modulo, Curso, Centro WHERE Ciclo.ID_Ciclo=Modulo.ID_Ciclo and Ciclo.ID_Centro=Centro.ID_Centro and Ciclo.ID_Curso= Curso.ID_Curso and Modulo.ID_Modulo = ".$id;
 		$query = $this->db->query($query);
@@ -59,8 +59,8 @@ class Modulo_model extends CI_Model{
 			return false;
 		}
 	}	
-
-	public function actualizar_ciclo($id,$datos){
+	//Actualiza modulo segun el id
+	public function actualizar_modulo($id,$datos){
 		$datosBD = array(
 			'ID_Centro' => $datos['ID_Centro'],
 			'ID_Curso' => $datos['ID_Curso'],			
@@ -70,13 +70,13 @@ class Modulo_model extends CI_Model{
 		$this->db->where('ID_Ciclo',$id);
 		$this->db->update('Ciclo', $datosBD);
 	}	
-	
+	//Borra modulo segun el id
 	public function borrar_modulo($id){
 		$this->db->where('ID_Modulo',$id);
 		$this->db->delete('Modulo');
 	}
 	
-
+	//filtra dependiendo del ciclo, curso y centro seleccionados
 	public function filtrar_modulo_valores($filtro){
 		$query = "SELECT ID_Modulo, DESC_Ciclo,DESC_Centro, COD_Curso,  DESC_Modulo, COD_Modulo FROM Ciclo, Modulo, Curso, Centro WHERE Ciclo.ID_Ciclo=Modulo.ID_Ciclo and Ciclo.ID_Centro=Centro.ID_Centro and Ciclo.ID_Curso= Curso.ID_Curso";
 			if ($filtro['ID_Ciclo'] != 0){
@@ -95,7 +95,7 @@ class Modulo_model extends CI_Model{
 			return false;
 		}
 	}
-
+	//Obtiene los datos
 	public function obtener_datos_ciclo(){
 		$query = "SELECT ID_Ciclo, DESC_Centro, COD_Curso, DESC_Ciclo FROM Ciclo, Curso, Centro WHERE Ciclo.ID_Centro=Centro.ID_Centro and Ciclo.ID_Curso= Curso.ID_Curso";
 

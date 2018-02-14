@@ -7,7 +7,7 @@ class Equipo_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Inserta un nuevo equipo en la base de datos
 	public function nuevo_equipo($datos){
 		$datosBD = array(
 			'ID_Reto' => $this->input->post('ID_Reto'),
@@ -16,7 +16,7 @@ class Equipo_model extends CI_Model{
 		);
 		$this->db->insert('Equipo', $datosBD);
 	}
-
+	//Obtiene todos los equipos
 	public function obtener_equipos(){
 		$query = $this->db->get('Equipo');
 		if ($query->num_rows() > 0){
@@ -25,6 +25,7 @@ class Equipo_model extends CI_Model{
 			return false;
 		}
 	}
+	//Obtienes el equipo segun el usuario logeado para sacar los usuarios del equipo en el que esta el usuario logeado
 	public function obtener_equipos_evaluar($dato){
 
 		$query2 ="SELECT ID_Equipo FROM Equipo_Usuario WHERE ID_Usuario = $dato";
@@ -43,7 +44,7 @@ class Equipo_model extends CI_Model{
 		}	
 	}
 
-	//Obtiene todo los Ciclos, pero con los valores de las claves referenciadas
+	//Obtiene todo los equipos, pero con los valores de las claves referenciadas
 	public function obtener_equipos_valores(){
 		$query = "SELECT ID_Equipo, DESC_Reto, COD_Equipo, DESC_Equipo FROM Equipo, Reto WHERE Equipo.ID_Reto=Reto.ID_Reto";
 		$query = $this->db->query($query);
@@ -53,7 +54,7 @@ class Equipo_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Obtiene el equipo segun el id
 	public function obtener_equipo($id){
 		$where = $this->db->where('ID_Equipo',$id);
 		$query = $this->db->get('Equipo');
@@ -64,7 +65,7 @@ class Equipo_model extends CI_Model{
 		}
 	}	
 
-	//Obtiene Ciclo por ID, pero con los valores de las claves referenciadas
+	//Obtiene equipo por ID, pero con los valores de las claves referenciadas
 	public function obtener_equipo_valores($id){
 		$query = "SELECT ID_Equipo, DESC_Reto, COD_Equipo, DESC_Equipo FROM Equipo, Reto WHERE Equipo.ID_Reto=Reto.ID_Reto and Equipo.ID_Equipo = ".$id;
 		$query = $this->db->query($query);
@@ -74,7 +75,7 @@ class Equipo_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Actualiza el equipo segun el id
 	public function actualizar_equipo($id,$datos){
 		$datosBD = array(
 			'ID_Reto' => $datos['ID_Reto'],			
@@ -84,12 +85,12 @@ class Equipo_model extends CI_Model{
 		$this->db->where('ID_Equipo',$id);
 		$this->db->update('Equipo', $datosBD);
 	}	
-
+	//Borra el equipo segun el id
 	public function borrar_equipo($id){
 		$this->db->where('ID_Equipo',$id);
 		$this->db->delete('Equipo');
 	}
-
+	//Filtra el equipo dependiendo del reto escogido
 	public function filtrar_equipo_valores($filtro){
 		$query = "SELECT ID_Equipo, DESC_Reto, COD_Equipo, DESC_Equipo FROM Equipo, Reto WHERE Equipo.ID_Reto=Reto.ID_Reto";
 		if ($filtro['ID_Reto'] != 0){

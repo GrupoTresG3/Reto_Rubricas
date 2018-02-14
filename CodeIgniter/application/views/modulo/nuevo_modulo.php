@@ -1,27 +1,27 @@
 <?php
 session_start();
-	if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
-?>
-<?php
-$form = array(
-	'name' => 'form_modulo'
-	);
-$COD_Modulo = array(
-	'name' => 'COD_Modulo',
-	'placeholder' => 'Código de Modulo',
-	'maxlength' => 10,
-	'size' => 20,
-	'class' => 'prueba',
-	'required' => 1
-	);
-$DESC_Modulo = array(	
-	'name' => 'DESC_Modulo',
-	'placeholder' => 'Descripción de Modulo',
-	'maxlength' => 100,
-	'class' => 'prueba',
-	'size' => 25,
-	'required' => 1
-	);
+if((isset($_SESSION['user_id']))&&($_SESSION['user_id']=='1')){
+	?>
+	<?php
+	$form = array(
+		'name' => 'form_modulo'
+		);
+	$COD_Modulo = array(
+		'name' => 'COD_Modulo',
+		'placeholder' => 'Código de Modulo',
+		'maxlength' => 10,
+		'size' => 20,
+		'class' => 'prueba',
+		'required' => 1
+		);
+	$DESC_Modulo = array(	
+		'name' => 'DESC_Modulo',
+		'placeholder' => 'Descripción de Modulo',
+		'maxlength' => 100,
+		'class' => 'prueba',
+		'size' => 25,
+		'required' => 1
+		);
 
 
 	if ($ciclos){
@@ -32,32 +32,30 @@ $DESC_Modulo = array(
 	}
 	else{
 		$ID_Ciclo = array(
-    		0         => 'No hay Ciclos'
-		);
+			0         => 'No hay Ciclos'
+			);
 	}
 
 
-?>
-
-<div id="centro2">
-	<?php echo form_open('Modulo/nuevo_modulo',$form);?>
-	<?php echo form_label('Ciclo: ','ID_Ciclo'); ?>
-	<?php
-	//DESPLEGABLE DE CICLO
-	echo form_dropdown('ID_Ciclo', $ID_Ciclo,1);
 	?>
-	<br>
 
-	<?php echo form_label('Código de Modulo: ','COD_Modulo'); ?>
-	<?php echo form_input($COD_Modulo); ?>
-	<br>
-	<?php echo form_label('Descripción de Modulo: ','DESC_Modulo'); ?>
-	<?php echo form_input($DESC_Modulo); ?>
-	<br>	
-	<?php echo form_submit('Crear','Crear',"id='botonesNuevo'"); ?>
-	<?php echo form_close();?>
-</div>
-<?php  
+	<div id="centro2">
+		<?php echo form_open('Modulo/nuevo_modulo',$form);?>
+		<?php echo form_label('Ciclo: ','ID_Ciclo'); ?>
+		<?php
+		echo form_dropdown('ID_Ciclo', $ID_Ciclo,1);
+		?>
+		<br>
+		<?php echo form_label('Código de Modulo: ','COD_Modulo'); ?>
+		<?php echo form_input($COD_Modulo); ?>
+		<br>
+		<?php echo form_label('Descripción de Modulo: ','DESC_Modulo'); ?>
+		<?php echo form_input($DESC_Modulo); ?>
+		<br>	
+		<?php echo form_submit('Crear','Crear',"id='botonesNuevo'"); ?>
+		<?php echo form_close();?>
+	</div>
+	<?php  
 }
 else{
 	?>

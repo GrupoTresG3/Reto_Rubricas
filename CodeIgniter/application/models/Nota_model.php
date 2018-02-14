@@ -7,7 +7,7 @@ class Nota_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Obtiene todas las notas del equipo del usuario logeado
 	public function obtener_nota($dato){
 
 		$query2 ="SELECT ID_Equipo FROM Equipo_Usuario WHERE ID_Usuario = $dato";
@@ -35,6 +35,7 @@ class Nota_model extends CI_Model{
 		
 		
 	}
+	//Filtra dependiendo de la medicion y el evaluador
 	public function obtener_nota_filtro($dato){
 
 		$query = "SELECT DESC_Competencia, Nota, Porcentaje From Medicion_GrupoCompetencia_Competencia, Medicion, Competencia, Notas, Usuario Where Medicion_GrupoCompetencia_Competencia.ID_Competencia=Competencia.ID_Competencia and Notas.ID_Competencia=Competencia.ID_Competencia and Medicion.ID_Medicion=Medicion_GrupoCompetencia_Competencia.ID_Medicion and Usuario.ID_Usuario=Notas.ID_Usuario  and USER LIKE '$dato' and ID_Evaluador=".$_SESSION['user_ev']." and Medicion.ID_Medicion=".$_SESSION['user_md']."";

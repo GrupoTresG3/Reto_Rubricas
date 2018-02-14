@@ -7,7 +7,7 @@ class Ciclo_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Inserta en la base de datos un nuevo ciclo
 	public function nuevo_ciclo($datos){
 		$datosBD = array(
 			'ID_Curso' => $this->input->post('ID_Curso'),
@@ -17,7 +17,7 @@ class Ciclo_model extends CI_Model{
 		);
 		$this->db->insert('Ciclo', $datosBD);
 	}
-
+	//Obtiene todos los ciclos de la base de datos
 	public function obtener_ciclos(){
 		$query = $this->db->get('Ciclo');
 		if ($query->num_rows() > 0){
@@ -37,7 +37,7 @@ class Ciclo_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Obtiene el ciclo segun el id obtenido
 	public function obtener_ciclo($id){
 		$where = $this->db->where('ID_Ciclo',$id);
 		$query = $this->db->get('Ciclo');
@@ -58,7 +58,7 @@ class Ciclo_model extends CI_Model{
 			return false;
 		}
 	}	
-
+	//Actualiza el ciclo segun el id obtenido
 	public function actualizar_ciclo($id,$datos){
 		$datosBD = array(
 			'ID_Centro' => $datos['ID_Centro'],
@@ -69,12 +69,12 @@ class Ciclo_model extends CI_Model{
 		$this->db->where('ID_Ciclo',$id);
 		$this->db->update('Ciclo', $datosBD);
 	}	
-
+	//Borra el ciclo segun el id
 	public function borrar_ciclo($id){
 		$this->db->where('ID_Ciclo',$id);
 		$this->db->delete('Ciclo');
 	}
-
+	//Filtra los ciclos dependiendo del curso y centro seleccionados
 	public function filtrar_ciclo_valores($filtro){
 		$query = "SELECT ID_Ciclo, DESC_Centro, COD_Curso, COD_Ciclo, DESC_Ciclo FROM Ciclo, Curso, Centro WHERE Ciclo.ID_Centro=Centro.ID_Centro and Ciclo.ID_Curso= Curso.ID_Curso";
 		if ($filtro['ID_Curso'] != 0){

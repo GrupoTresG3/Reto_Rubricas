@@ -12,7 +12,7 @@ class Equipo_Usuario extends CI_Controller {
 		$this->load->model('Equipo_Usuario_model');		
 	}
 
-	//ok
+	//Cargamos la pagina principal
 	public function index()
 	{
 		$datos['segmento']=$this->uri->segment(3);
@@ -29,7 +29,7 @@ class Equipo_Usuario extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para crear un nuevo Equipo_Usuario
 	public function nuevo(){
 		$datos['equipos'] = $this->Equipo_model->obtener_equipos();
 		$datos['usuarios'] = $this->Usuario_model->obtener_usuarios();
@@ -38,19 +38,19 @@ class Equipo_Usuario extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para inserta un nuevo Equipo_Usuario
 	public function nuevo_equipo_usuario(){
 		$datos = array(
 			'ID_Equipo' => $this->input->post('ID_Equipo'),
 			'ID_Usuario' => $this->input->post('ID_Usuario'),
 			'COD_Rol' => $this->input->post('COD_Rol'),									
 			
-		);
+			);
 		$this->Equipo_Usuario_model->nuevo_equipo_usuario($datos);
 		redirect('Equipo_Usuario');		
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para editar un Equipo_Usuario
 	public function editar(){
 		$datos['segmento']=$this->uri->segment(3);
 		$datos['equipos_usuarios']=$this->Equipo_Usuario_model->obtener_equipo_usuario($datos['segmento']);
@@ -61,31 +61,31 @@ class Equipo_Usuario extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para editar un Equipo_Usuario
 	public function actualizar(){
 		$datos = array(
 			'ID_Equipo' => $this->input->post('ID_Equipo'),
 			'ID_Usuario' => $this->input->post('ID_Usuario'),
 			'COD_Rol' => $this->input->post('COD_Rol'),
-		);
+			);
 		$id = $this->uri->segment(3);
 		$this->Equipo_Usuario_model->actualizar_equipo_usuario($id,$datos);
 		redirect('Equipo_Usuario');
 	}
 
+	//Funcion que realiza la SQL para borrar un Equipo_Usuario
 	public function borrar(){
 		$id = $this->uri->segment(3);
 		$this->Equipo_Usuario_model->borrar_equipo_usuario($id);
 		redirect('Equipo_Usuario');
 	}	
 
+	//Funcion que nos mostrara unos filtros para una busqueda mas exacta
 	public function filtrar_equipo_usuario(){
 		$datos = array(
 			'ID_Equipo' => $this->input->post('ID_Equipo'),
 			'ID_Usuario' => $this->input->post('ID_Usuario'),
-		);	
-		//$filtro_centro = $this->input->post('ID_Centro');
-		//$filtro_curso = $this->input->post('ID_Curso');	
+			);	
 
 		$datos['equipos_usuarios']=$this->Equipo_Usuario_model->filtrar_equipo_usuario_valores($datos);	
 		$datos['equipos'] = $this->Equipo_model->obtener_equipos();

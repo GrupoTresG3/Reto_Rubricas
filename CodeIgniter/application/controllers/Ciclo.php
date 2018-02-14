@@ -12,7 +12,7 @@ class Ciclo extends CI_Controller {
 		$this->load->model('Ciclo_model');		
 	}
 
-	//ok
+	//Cargamos la pagina principal
 	public function index()
 	{
 		$datos['segmento']=$this->uri->segment(3);
@@ -29,7 +29,7 @@ class Ciclo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para crear un nuevo ciclo
 	public function nuevo(){
 		$datos['centros'] = $this->Centro_model->obtener_centros();
 		$datos['cursos'] = $this->Curso_model->obtener_cursos();
@@ -38,7 +38,7 @@ class Ciclo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para inserta un nuevo ciclo
 	public function nuevo_ciclo(){
 		$datos = array(
 			'ID_Curso' => $this->input->post('ID_Curso'),
@@ -50,7 +50,7 @@ class Ciclo extends CI_Controller {
 		redirect('Ciclo');		
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para editar un ciclo
 	public function editar(){
 		$datos['segmento']=$this->uri->segment(3);
 		$datos['ciclos']=$this->Ciclo_model->obtener_ciclo($datos['segmento']);
@@ -61,7 +61,7 @@ class Ciclo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para editar un ciclo
 	public function actualizar(){
 		$datos = array(
 			'ID_Curso' => $this->input->post('ID_Curso'),
@@ -74,19 +74,19 @@ class Ciclo extends CI_Controller {
 		redirect('Ciclo');
 	}
 
+	//Funcion que realiza la SQL para borrar un ciclo
 	public function borrar(){
 		$id = $this->uri->segment(3);
 		$this->Ciclo_model->borrar_ciclo($id);
 		redirect('Ciclo');
 	}	
 
+	//Funcion que nos mostrara unos filtros para una busqueda mas exacta
 	public function filtrar_ciclo(){
 		$datos = array(
 			'ID_Curso' => $this->input->post('ID_Curso'),
 			'ID_Centro' => $this->input->post('ID_Centro'),
 		);	
-		//$filtro_centro = $this->input->post('ID_Centro');
-		//$filtro_curso = $this->input->post('ID_Curso');	
 
 		$datos['ciclos']=$this->Ciclo_model->filtrar_ciclo_valores($datos);	
 		$datos['centros'] = $this->Centro_model->obtener_centros();

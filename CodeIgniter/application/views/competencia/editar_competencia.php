@@ -45,28 +45,28 @@ $Excelente = array(
 	'class' => 'prueba',
 	'size' => 20
 	);
-?>
+	?>
 
-<div id="margenEditar">
-	<?php echo form_open('Competencia/actualizar/'.$competencias->result()[0]->ID_Competencia,$form);?>
-	<?php echo form_label('Descripción de Competencia: ','DESC_Competencia'); ?>
-	<?php echo form_input($DESC_Competencia); ?>
-	<br>
-	<?php echo form_label('Descripcion de la compentia Mala: ','Mal'); ?>
-	<?php echo form_input($Mal); ?>
-	<br>
-	<?php echo form_label('Descripcion de la compentia Regular: ','Regular'); ?>
-	<?php echo form_input($Regular); ?>
-	<br>
-	<?php echo form_label('Descripcion de la compentia Buena: ','Bien'); ?>
-	<?php echo form_input($Bien); ?>
-	<br>
-	<?php echo form_label('Descripcion de la compentia Excelente: ','Excelente'); ?>
-	<?php echo form_input($Excelente); ?>
-	<br>
-	<?php echo form_submit('Guardar','Guardar',"id='botonesEditar'"); ?>
+	<div id="margenEditar">
+		<?php echo form_open('Competencia/actualizar/'.$competencias->result()[0]->ID_Competencia,$form);?>
+		<?php echo form_label('Descripción de Competencia: ','DESC_Competencia'); ?>
+		<?php echo form_input($DESC_Competencia); ?>
+		<br>
+		<?php echo form_label('Descripcion de la compentia Mala: ','Mal'); ?>
+		<?php echo form_input($Mal); ?>
+		<br>
+		<?php echo form_label('Descripcion de la compentia Regular: ','Regular'); ?>
+		<?php echo form_input($Regular); ?>
+		<br>
+		<?php echo form_label('Descripcion de la compentia Buena: ','Bien'); ?>
+		<?php echo form_input($Bien); ?>
+		<br>
+		<?php echo form_label('Descripcion de la compentia Excelente: ','Excelente'); ?>
+		<?php echo form_input($Excelente); ?>
+		<br>
+		<?php echo form_submit('Guardar','Guardar',"id='botonesEditar'"); ?>
 
-	<?php echo form_button('Cancelar','Cancelar',$js_cancel_button); ?>
-	<?php echo form_close();?>
-</div>
+		<?php echo form_button('Cancelar','Cancelar',$js_cancel_button); ?>
+		<?php echo form_close();?>
+	</div>
 

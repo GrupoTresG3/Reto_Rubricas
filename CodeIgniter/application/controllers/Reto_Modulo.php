@@ -13,7 +13,7 @@ class reto_Modulo extends CI_Controller {
 		$this->load->model('reto_Modulo_model');		
 	}
 
-	//ok
+	//Cargamos la pagina principal
 	public function index()
 	{
 		$datos['segmento']=$this->uri->segment(3);
@@ -31,7 +31,7 @@ class reto_Modulo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para crear un nuevo Reto_Modulo
 	public function nuevo(){
 		$datos['modulos'] = $this->Modulo_model->obtener_modulos_valores();
 		$datos['usuarios'] = $this->Usuario_model->obtener_usuarios_valores();
@@ -41,7 +41,7 @@ class reto_Modulo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para inserta un nuevo Reto_Modulo
 	public function nuevo_reto_modulo(){
 		$datos = array(
 			'ID_Reto_modulo' => $this->input->post('ID_Reto_modulo'),
@@ -55,7 +55,7 @@ class reto_Modulo extends CI_Controller {
 		redirect('Reto_Modulo');		
 	}
 
-	//ok
+	//Aqui se visualiza el formulario para editar un Reto_Modulo
 	public function editar(){
 		$datos['segmento']=$this->uri->segment(3);
 		$datos['retos_modulos']=$this->reto_Modulo_model->obtener_reto_modulo($datos['segmento']);
@@ -67,7 +67,7 @@ class reto_Modulo extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	//ok
+	//Funcion que realiza la SQL para editar un Reto_Modulo
 	public function actualizar(){
 		$datos = array(
 			'ID_Reto' => $this->input->post('ID_Reto'),
@@ -81,20 +81,20 @@ class reto_Modulo extends CI_Controller {
 		redirect('Reto_Modulo');
 	}
 
+	//Funcion que realiza la SQL para borrar un Reto_Modulo
 	public function borrar(){
 		$id = $this->uri->segment(3);
 		$this->reto_Modulo_model->borrar_reto_modulo($id);
 		redirect('Reto_Modulo');
 	}	
 
+	//Funcion que nos mostrara unos filtros para una busqueda mas exacta
 	public function filtrar_reto_modulo(){
 		$datos = array(
 			'ID_Reto' => $this->input->post('ID_Reto'),
 			'ID_Usuario' => $this->input->post('ID_Usuario'),
 			'ID_Modulo' => $this->input->post('ID_Modulo'),
-		);	
-		//$filtro_centro = $this->input->post('ID_Centro');
-		//$filtro_curso = $this->input->post('ID_Curso');	
+		);		
 
 		$datos['retos_modulos']=$this->reto_Modulo_model->filtrar_reto_modulo_valores($datos);	
 		$datos['retos'] = $this->reto_model->obtener_retos();

@@ -7,7 +7,7 @@ class Evaluar_model extends CI_Model{
 		parent::__construct();
 		$this->load->database();
 	}
-
+	//Inserta una nueva nota en la base de datos
 	public function nueva_nota($datos){
 
 		$query2 ="SELECT * FROM Notas WHERE ID_Evaluador =".$_SESSION['user_ev']." and ID_Usuario= ".$datos['ID_Usuario']." and ID_Competencia= ".$datos['ID_Competencia']."";
@@ -27,7 +27,7 @@ class Evaluar_model extends CI_Model{
 	}
 
 
-
+	//Obtienes los usuarios dependiendo de su tipo de usuario, reto y equipo
 	public function obtener_usuarios_reto_grupo($dato, $dat){
 
 		$query2 ="SELECT ID_Usuario,User FROM Usuario WHERE ID_Usuario in (SELECT ID_Usuario FROM Equipo_Usuario WHERE ID_Equipo in (SELECT ID_Equipo FROM Equipo WHERE ID_Equipo in (SELECT ID_Equipo FROM Equipo_Usuario WHERE ID_Usuario = $dato) and ID_Reto = $dat)) and ID_TUsuario=3";
@@ -39,7 +39,7 @@ class Evaluar_model extends CI_Model{
 		}
 
 	}
-
+	//Obetener competencias segun el tipo de usuario que este logeado
 	public function obtener_competencias($dato){
 
 		$query = "SELECT * FROM Competencia WHERE ID_Competencia in (SELECT ID_Competencia FROM Medicion_GrupoCompetencia_Competencia WHERE ID_Medicion in (SELECT ID_Medicion FROM Medicion WHERE ID_TUsuario = $dato))";
@@ -50,7 +50,7 @@ class Evaluar_model extends CI_Model{
 			return false;
 		}
 	}
-
+	//Obtener notas dependiendo del usuario que a evaluado
 	public function obtener_nota_filtro($dato){
 
 		$query = "SELECT Nota From Notas, Usuario Where Usuario.ID_Usuario=Notas.ID_Usuario  and USER LIKE '$dato' and ID_Evaluador=".$_SESSION["user_ev"]."";

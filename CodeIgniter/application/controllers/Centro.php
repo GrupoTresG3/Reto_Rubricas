@@ -11,6 +11,7 @@ class Centro extends CI_Controller {
 
 	}
 
+	//Cargamos la pagina principal
 	public function index()
 	{
 		$datos['segmento']=$this->uri->segment(3);
@@ -25,12 +26,14 @@ class Centro extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	//Aqui se visualiza el formulario para crear un nuevo centro
 	public function nuevo(){
 		$this->load->view('header');
 		$this->load->view('centro/nuevo_centro');
 		$this->load->view('footer');
 	}
 
+	//Funcion que realiza la SQL para inserta un nuevo centro
 	public function nuevo_centro(){
 		$datos = array(
 			'COD_Centro' => $this->input->post('COD_Centro'),
@@ -40,6 +43,7 @@ class Centro extends CI_Controller {
 		redirect('Centro');		
 	}
 
+	//Aqui se visualiza el formulario para editar un centro
 	public function editar(){
 		$datos['segmento']=$this->uri->segment(3);
 		$datos['centros']=$this->Centro_model->obtener_centro($datos['segmento']);
@@ -48,6 +52,7 @@ class Centro extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	//Funcion que realiza la SQL para editar un centro
 	public function actualizar(){
 		$datos = array(
 			'COD_Centro' => $this->input->post('COD_Centro'),
@@ -58,6 +63,7 @@ class Centro extends CI_Controller {
 		redirect('Centro');
 	}
 
+	//Funcion que realiza la SQL para borrar un centro
 	public function borrar(){
 		$id = $this->uri->segment(3);
 		$this->Centro_model->borrar_centro($id);

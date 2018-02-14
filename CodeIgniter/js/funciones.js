@@ -94,12 +94,6 @@ $(document).ready(function(){
         });
 
     });
-    //Gestion de retos mediciones
-    $("#cargarReto_Medicion").click(function(){
-        $("#contenido").load("index.php/Reto_Medicion",function(){
-            $( "#cabecera" ).html( "Gestion de Retos Mediciones" );
-        });
-    });
     //Gestion de matricularse
     $("#cargarMatricularse").click(function(){
         $("#contenido").load("index.php/Matricularse",function(){
